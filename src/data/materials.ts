@@ -8,7 +8,7 @@ export const materials: Material[] = [
     characteristics: { es: ['Alta durabilidad (50+ años)', 'Resistente a la humedad', 'Veta natural única', 'Fácil de reparar', 'Sostenible y certificado FSC'], en: ['High durability (50+ years)', 'Moisture resistant', 'Unique natural grain', 'Easy to repair', 'Sustainable and FSC certified'], ru: ['Высокая долговечность (50+ лет)', 'Устойчивость к влаге', 'Уникальная натуральная текстура', 'Легко ремонтируется', 'Сертификат FSC'] },
     mainImage: { src: 'https://images.unsplash.com/photo-1530973428-5bf2db2e4d71?w=1200&q=80', alt: { es: 'Roble natural', en: 'Natural oak', ru: 'Натуральный дуб' }, width: 1200, height: 800 },
     textureImage: { src: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=800&q=80', alt: { es: 'Textura de roble', en: 'Oak texture', ru: 'Текстура дуба' }, width: 800, height: 800 },
-    gallery: [], projectIds: ['p1', 'p4'],
+    gallery: [], projectIds: ['p1', 'p4', 'p5'],
   },
   {
     id: 'm2', slug: 'nogal-americano', category: 'maderas',
