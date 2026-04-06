@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "cocinas": "Cocinas",
+    "vestidores": "Vestidores y Armarios",
+    "muebles": "Muebles a medida",
+    "integrales": "Proyectos Integrales",
+    "materials": "Materiales",
+    "maderas": "Maderas y Chapa",
+    "piedra": "Piedra y Cerámica",
+    "metales": "Metales y Herrajes",
+    "textiles": "Textiles",
+    "services": "Servicios",
+    "diseno": "Diseño de Interiores",
+    "fabricacion": "Fabricación Propia",
+    "montaje": "Montaje y Logística",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Tu hogar, diseñado para ti. No para todos.",
+    "subtitle": "Mueble a medida al precio que ya pagas. Valencia · España",
+    "cta_primary": "Solicitar presupuesto",
+    "cta_secondary": "Ver proyectos"
+  },
+  "utp": {
+    "label": "Por qué elegirnos",
+    "title": "El precio de IKEA. La pieza que sólo existe en tu casa.",
+    "body": "Fabricamos a medida en Valencia. Sin catálogos, sin compromisos — sólo tu espacio, tus medidas, tu estilo. Por lo mismo que pagarías en cualquier tienda grande.",
+    "stat1_value": "100%",
+    "stat1_label": "A medida",
+    "stat2_value": "+200",
+    "stat2_label": "Proyectos en Valencia",
+    "stat3_value": "3",
+    "stat3_label": "Semanas de entrega"
+  },
+  "projects": {
+    "title": "Proyectos recientes",
+    "view_all": "Ver todos los proyectos",
+    "filter_all": "Todos",
+    "filter_cocinas": "Cocinas",
+    "filter_vestidores": "Vestidores",
+    "filter_muebles": "Muebles",
+    "filter_integrales": "Integrales",
+    "similar_cta": "Quiero un proyecto similar",
+    "related": "Proyectos relacionados",
+    "challenge": "El reto",
+    "solution": "La solución",
+    "materials_used": "Materiales utilizados"
+  },
+  "philosophy": {
+    "label": "Nuestra filosofía",
+    "title": "No vendemos muebles. Integramos espacios que duran toda la vida.",
+    "body": "Cada proyecto empieza con escucha activa y termina con un espacio que refleja quién eres — no quién fabrica en serie."
+  },
+  "services": {
+    "title": "Así trabajamos",
+    "subtitle": "Del primer boceto a la instalación final",
+    "step1": "Diseño",
+    "step1_desc": "Visita, medidas, render 3D de tu espacio",
+    "step2": "Fabricación",
+    "step2_desc": "Taller propio en Valencia, materiales premium",
+    "step3": "Montaje",
+    "step3_desc": "Instalación en 3 semanas, garantía incluida"
+  },
+  "cta": {
+    "label": "¿Listo para empezar?",
+    "title": "Tu espacio perfecto empieza con una llamada.",
+    "subtitle": "Consulta gratuita · Presupuesto sin compromiso",
+    "primary": "Solicitar presupuesto",
+    "whatsapp": "WhatsApp"
+  },
+  "contact": {
+    "title": "Hablemos de tu proyecto",
+    "subtitle": "Visítanos en Valencia o escríbenos. Respondemos en menos de 24h.",
+    "form_name": "Nombre",
+    "form_email": "Email",
+    "form_phone": "Teléfono",
+    "form_service": "Servicio de interés",
+    "form_message": "Cuéntanos tu proyecto",
+    "form_submit": "Enviar mensaje",
+    "form_success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "form_error": "Error al enviar. Inténtalo de nuevo.",
+    "service_diseno": "Diseño de Interiores",
+    "service_fabricacion": "Fabricación",
+    "service_montaje": "Montaje",
+    "service_integral": "Proyecto Integral",
+    "service_other": "Otro"
+  },
+  "about": {
+    "title": "Quiénes somos",
+    "subtitle": "Un equipo apasionado por el diseño y la artesanía valenciana.",
+    "history_title": "Nuestra historia",
+    "history_body": "ConceptoFino nació en Valencia con una misión clara: demostrar que el diseño a medida no es un lujo reservado a unos pocos. Con más de 15 años de experiencia y 200+ proyectos completados, hemos transformado cientos de hogares valencianos.",
+    "reviews_title": "Lo que dicen nuestros clientes"
+  },
+  "blog": {
+    "title": "Inspiración y consejos",
+    "subtitle": "Ideas para tu hogar, tendencias de diseño y noticias de nuestro taller.",
+    "read_more": "Leer más"
+  },
+  "materials": {
+    "title": "Nuestros materiales",
+    "subtitle": "Solo los mejores materiales para espacios que duran toda la vida.",
+    "characteristics": "Características",
+    "projects_with": "Proyectos con este material"
+  },
+  "footer": {
+    "tagline": "Smart Integration & Timeless Design",
+    "nav_title": "Navegación",
+    "services_title": "Servicios",
+    "contact_title": "Contacto",
+    "copyright": "© 2024 ConceptoFino. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "legal": "Aviso Legal"
+  },
+  "lead_form": {
+    "title": "¿Te interesa un proyecto similar?",
+    "subtitle": "Cuéntanos y te hacemos un presupuesto en 24h.",
+    "name": "Tu nombre",
+    "phone": "Teléfono",
+    "email": "Email",
+    "submit": "Solicitar presupuesto",
+    "success": "¡Recibido! Te contactaremos en menos de 24h.",
+    "error": "Error al enviar. Prueba por WhatsApp."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "close": "Cerrar",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú",
+    "language": "Idioma",
+    "back": "Volver",
+    "see_more": "Ver más",
+    "view_project": "Ver proyecto"
+  }
+}

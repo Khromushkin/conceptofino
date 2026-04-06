@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "cocinas": "Kitchens",
+    "vestidores": "Wardrobes",
+    "muebles": "Custom Furniture",
+    "integrales": "Complete Interiors",
+    "materials": "Materials",
+    "maderas": "Wood & Veneer",
+    "piedra": "Stone & Ceramic",
+    "metales": "Metals & Hardware",
+    "textiles": "Textiles",
+    "services": "Services",
+    "diseno": "Interior Design",
+    "fabricacion": "Manufacturing",
+    "montaje": "Assembly & Logistics",
+    "blog": "Blog",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Your home, designed for you. Not for everyone.",
+    "subtitle": "Custom furniture at the price you already pay. Valencia · Spain",
+    "cta_primary": "Request a quote",
+    "cta_secondary": "View projects"
+  },
+  "utp": {
+    "label": "Why choose us",
+    "title": "The IKEA price. The piece that only exists in your home.",
+    "body": "We manufacture to measure in Valencia. No catalogues, no compromises — just your space, your measurements, your style. For the same price you would pay at any big store.",
+    "stat1_value": "100%",
+    "stat1_label": "Custom made",
+    "stat2_value": "+200",
+    "stat2_label": "Projects in Valencia",
+    "stat3_value": "3",
+    "stat3_label": "Weeks delivery"
+  },
+  "projects": {
+    "title": "Recent projects",
+    "view_all": "View all projects",
+    "filter_all": "All",
+    "filter_cocinas": "Kitchens",
+    "filter_vestidores": "Wardrobes",
+    "filter_muebles": "Furniture",
+    "filter_integrales": "Complete Interiors",
+    "similar_cta": "I want a similar project",
+    "related": "Related projects",
+    "challenge": "The challenge",
+    "solution": "The solution",
+    "materials_used": "Materials used"
+  },
+  "philosophy": {
+    "label": "Our philosophy",
+    "title": "We don't sell furniture. We integrate spaces that last a lifetime.",
+    "body": "Each project starts with active listening and ends with a space that reflects who you are — not who manufactures in series."
+  },
+  "services": {
+    "title": "How we work",
+    "subtitle": "From the first sketch to the final installation",
+    "step1": "Design",
+    "step1_desc": "Visit, measurements, 3D render of your space",
+    "step2": "Manufacturing",
+    "step2_desc": "Own workshop in Valencia, premium materials",
+    "step3": "Assembly",
+    "step3_desc": "Installation in 3 weeks, warranty included"
+  },
+  "cta": {
+    "label": "Ready to start?",
+    "title": "Your perfect space starts with a call.",
+    "subtitle": "Free consultation · No-obligation quote",
+    "primary": "Request a quote",
+    "whatsapp": "WhatsApp"
+  },
+  "contact": {
+    "title": "Let's talk about your project",
+    "subtitle": "Visit us in Valencia or write to us. We reply within 24h.",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_phone": "Phone",
+    "form_service": "Service of interest",
+    "form_message": "Tell us about your project",
+    "form_submit": "Send message",
+    "form_success": "Message sent! We will contact you soon.",
+    "form_error": "Error sending. Please try again.",
+    "service_diseno": "Interior Design",
+    "service_fabricacion": "Manufacturing",
+    "service_montaje": "Assembly",
+    "service_integral": "Complete Project",
+    "service_other": "Other"
+  },
+  "about": {
+    "title": "Who we are",
+    "subtitle": "A team passionate about design and Valencian craftsmanship.",
+    "history_title": "Our story",
+    "history_body": "ConceptoFino was born in Valencia with a clear mission: to prove that custom design is not a luxury reserved for a few. With over 15 years of experience and 200+ completed projects, we have transformed hundreds of Valencian homes.",
+    "reviews_title": "What our clients say"
+  },
+  "blog": {
+    "title": "Inspiration and advice",
+    "subtitle": "Ideas for your home, design trends and news from our workshop.",
+    "read_more": "Read more"
+  },
+  "materials": {
+    "title": "Our materials",
+    "subtitle": "Only the best materials for spaces that last a lifetime.",
+    "characteristics": "Characteristics",
+    "projects_with": "Projects using this material"
+  },
+  "footer": {
+    "tagline": "Smart Integration & Timeless Design",
+    "nav_title": "Navigation",
+    "services_title": "Services",
+    "contact_title": "Contact",
+    "copyright": "© 2024 ConceptoFino. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "legal": "Legal Notice"
+  },
+  "lead_form": {
+    "title": "Interested in a similar project?",
+    "subtitle": "Tell us and we'll give you a quote within 24h.",
+    "name": "Your name",
+    "phone": "Phone",
+    "email": "Email",
+    "submit": "Request a quote",
+    "success": "Received! We will contact you within 24h.",
+    "error": "Error sending. Try via WhatsApp."
+  },
+  "common": {
+    "loading": "Loading...",
+    "close": "Close",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "language": "Language",
+    "back": "Back",
+    "see_more": "See more",
+    "view_project": "View project"
+  }
+}
