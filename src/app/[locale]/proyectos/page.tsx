@@ -1,9 +1,9 @@
 // src/app/[locale]/proyectos/page.tsx
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
 import { getProjects } from '@/lib/content'
 import type { Locale } from '@/types'
 import ProjectGrid from '@/components/projects/ProjectGrid'
+import { buildMetadata } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -11,11 +11,13 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'projects' })
-  return {
-    title: `${t('title')} — ConceptoFino Valencia`,
-    description: 'Proyectos de diseño de interiores y muebles a medida en Valencia.',
+  const titles: Record<string, string> = { es: 'Proyectos — ConceptoFino', en: 'Projects — ConceptoFino', ru: 'Проекты — ConceptoFino' }
+  const descriptions: Record<string, string> = {
+    es: 'Galería de proyectos de muebles a medida en Valencia. Armarios, cocinas, salones y más.',
+    en: 'Custom furniture project gallery in Valencia. Wardrobes, kitchens, living rooms and more.',
+    ru: 'Галерея проектов мебели на заказ в Валенсии. Шкафы, кухни, гостиные и другое.',
   }
+  return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/proyectos`, locale: locale as 'es' | 'en' | 'ru' })
 }
 
 export default async function ProyectosPage({ params }: Props) {

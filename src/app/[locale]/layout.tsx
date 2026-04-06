@@ -8,6 +8,8 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/layout/WhatsAppButton'
 import SmoothScroll from '@/components/ui/SmoothScroll'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { buildLocalBusinessJsonLd } from '@/lib/seo'
 
 const Loader = dynamic(() => import('@/components/ui/Loader'), { ssr: false })
 
@@ -27,6 +29,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <JsonLd data={buildLocalBusinessJsonLd(locale as 'es' | 'en' | 'ru')} />
       <SmoothScroll>
         <Loader />
         <Header locale={locale as Locale} />

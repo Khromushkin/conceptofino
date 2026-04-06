@@ -1,5 +1,7 @@
 // src/app/[locale]/contacto/page.tsx
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { buildMetadata } from '@/lib/seo'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { getSiteSettings } from '@/lib/content'
 import type { Locale } from '@/types'
@@ -9,6 +11,17 @@ import GoogleMap from '@/components/contact/GoogleMap'
 
 interface Props {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const titles: Record<string, string> = { es: 'Contacto — ConceptoFino Valencia', en: 'Contact — ConceptoFino Valencia', ru: 'Контакты — ConceptoFino Валенсия' }
+  const descriptions: Record<string, string> = {
+    es: 'Solicita tu presupuesto gratuito. Diseñamos y fabricamos muebles a medida en Valencia.',
+    en: 'Request your free quote. We design and make custom furniture in Valencia.',
+    ru: 'Запросите бесплатную смету. Проектируем и изготавливаем мебель на заказ в Валенсии.',
+  }
+  return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/contacto`, locale: locale as 'es' | 'en' | 'ru' })
 }
 
 export default async function ContactoPage({ params }: Props) {

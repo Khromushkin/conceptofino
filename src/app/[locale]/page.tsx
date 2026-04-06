@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { getFeaturedProjects } from '@/lib/content'
 import type { Locale } from '@/types'
+import { buildMetadata } from '@/lib/seo'
 import HeroSection from '@/components/home/HeroSection'
 import UTPSection from '@/components/home/UTPSection'
 import FeaturedProjects from '@/components/home/FeaturedProjects'
@@ -15,17 +16,22 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'hero' })
-  return {
-    title: `ConceptoFino — ${t('title')}`,
-    description: t('subtitle'),
-    openGraph: {
-      title: `ConceptoFino Valencia`,
-      description: t('subtitle'),
-      images: ['/og-image.jpg'],
-      locale: locale,
-    },
+  const titles: Record<string, string> = {
+    es: 'ConceptoFino — Muebles a medida en Valencia',
+    en: 'ConceptoFino — Custom Furniture in Valencia',
+    ru: 'ConceptoFino — Мебель на заказ в Валенсии',
   }
+  const descriptions: Record<string, string> = {
+    es: 'Armarios, cocinas y muebles de diseño personalizados. Por el precio de IKEA, pero hecho a medida para ti en Valencia.',
+    en: 'Custom wardrobes, kitchens and designer furniture. At IKEA prices, but made to measure for you in Valencia.',
+    ru: 'Шкафы, кухни и дизайнерская мебель на заказ. По цене IKEA, но сделано специально для вас в Валенсии.',
+  }
+  return buildMetadata({
+    title: titles[locale] ?? titles.es,
+    description: descriptions[locale] ?? descriptions.es,
+    path: `/${locale}`,
+    locale: locale as 'es' | 'en' | 'ru',
+  })
 }
 
 export default async function HomePage({ params }: Props) {

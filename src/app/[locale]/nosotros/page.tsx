@@ -1,6 +1,8 @@
 // src/app/[locale]/nosotros/page.tsx
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
+import { buildMetadata } from '@/lib/seo'
 import { getTeam, getReviews } from '@/lib/content'
 import type { Locale } from '@/types'
 import { getLocalizedField } from '@/lib/utils'
@@ -9,6 +11,17 @@ import RevealOnScroll from '@/components/ui/RevealOnScroll'
 
 interface Props {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const titles: Record<string, string> = { es: 'Sobre nosotros — ConceptoFino', en: 'About us — ConceptoFino', ru: 'О нас — ConceptoFino' }
+  const descriptions: Record<string, string> = {
+    es: 'Conoce al equipo de ConceptoFino — artesanos valencianos con pasión por el diseño de interiores a medida.',
+    en: 'Meet the ConceptoFino team — Valencian craftspeople with a passion for bespoke interior design.',
+    ru: 'Познакомьтесь с командой ConceptoFino — валенсийские мастера с страстью к дизайну интерьеров на заказ.',
+  }
+  return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/nosotros`, locale: locale as 'es' | 'en' | 'ru' })
 }
 
 export default async function NosotrosPage({ params }: Props) {
