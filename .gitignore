@@ -40,3 +40,5 @@ next-env.d.ts
 .superpowers/
 .claude/settings.local.json
 scripts/scraper/output/
+scripts/scraper/output/
+public/images/projects/
