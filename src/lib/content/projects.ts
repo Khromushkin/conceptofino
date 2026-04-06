@@ -31,5 +31,6 @@ export async function getRelatedProjects(
 ): Promise<Project[]> {
   return projects
     .filter((p) => p.slug !== currentSlug && p.category === category)
+    .sort((a, b) => a.order - b.order)
     .slice(0, limit)
 }
