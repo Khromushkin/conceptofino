@@ -1,12 +1,15 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import dynamic from 'next/dynamic'
 import { routing } from '@/i18n/routing'
 import type { Locale } from '@/types'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/layout/WhatsAppButton'
 import SmoothScroll from '@/components/ui/SmoothScroll'
+
+const Loader = dynamic(() => import('@/components/ui/Loader'), { ssr: false })
 
 interface Props {
   children: React.ReactNode
@@ -25,6 +28,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <SmoothScroll>
+        <Loader />
         <Header locale={locale as Locale} />
         <main>{children}</main>
         <Footer locale={locale as Locale} />
