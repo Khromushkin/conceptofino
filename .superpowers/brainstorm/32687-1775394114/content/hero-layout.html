@@ -1,0 +1,93 @@
+<h2>Hero-секция — главный экран</h2>
+<p class="subtitle">Первое, что видит посетитель. Какой формат подачи?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="fullscreen-video" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#1a1a1a; min-height:200px; position:relative; overflow:hidden; border-bottom:1px solid #333;">
+      <!-- Imitation of fullscreen video -->
+      <div style="position:absolute; inset:0; background:linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 50%, #2d2d2d 100%); opacity:0.9;"></div>
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:24px;">
+        <div style="color:#b8a088; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:8px;">Smart Integration</div>
+        <div style="font-family:Georgia,serif; font-size:28px; color:#faf8f5; line-height:1.2; margin-bottom:16px;">Мебель, рождённая<br>для вашего пространства</div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="background:#b8a088; color:#fff; font-size:10px; letter-spacing:0.1em; padding:8px 16px; text-transform:uppercase;">Solicitar presupuesto</div>
+          <div style="color:#faf8f5; font-size:10px; letter-spacing:0.1em; opacity:0.6;">Ver proyectos ↓</div>
+        </div>
+      </div>
+      <!-- Scroll indicator -->
+      <div style="position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div style="width:1px; height:24px; background:rgba(250,248,245,0.3);"></div>
+        <div style="width:4px; height:4px; border-radius:50%; background:#b8a088;"></div>
+      </div>
+      <!-- Play icon hint -->
+      <div style="position:absolute; top:12px; right:12px; color:#faf8f5; opacity:0.3; font-size:10px; letter-spacing:0.1em;">▶ VIDEO</div>
+    </div>
+    <div class="card-body">
+      <h3>A — Fullscreen видео</h3>
+      <p>Видео интерьера на весь экран с тёмным overlay. Текст поверх. Максимальное погружение с первой секунды. Как у corston.eu. Требует хорошее видео.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="editorial-split" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#faf8f5; min-height:200px; display:flex; border-bottom:1px solid #e8e2d9;">
+      <!-- Left: text -->
+      <div style="flex:1; padding:24px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="font-size:10px; letter-spacing:0.2em; color:#b8a088; text-transform:uppercase;">ConceptoFino</div>
+        <div>
+          <div style="font-family:Georgia,serif; font-size:22px; color:#1a1a1a; line-height:1.25; margin-bottom:12px;">Smart<br>Integration &<br>Timeless<br>Design</div>
+          <div style="width:30px; height:1px; background:#b8a088; margin-bottom:10px;"></div>
+          <div style="font-size:10px; color:#8a8a8a; line-height:1.5; margin-bottom:14px;">Diseño de interiores y<br>fabricación a medida.<br>Valencia, España.</div>
+          <div style="background:#1a1a1a; color:#faf8f5; font-size:9px; letter-spacing:0.12em; padding:7px 12px; text-transform:uppercase; display:inline-block;">Ver proyectos</div>
+        </div>
+        <div style="font-size:9px; color:#b8a088; letter-spacing:0.1em;">01 / 04</div>
+      </div>
+      <!-- Right: photo -->
+      <div style="flex:1.2; background:linear-gradient(160deg, #d4c4b0, #b8a088, #c8baa8); position:relative;">
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.3;">
+          <div style="font-size:10px; color:#1a1a1a; letter-spacing:0.1em; text-transform:uppercase;">photo</div>
+        </div>
+        <!-- Slider dots -->
+        <div style="position:absolute; bottom:12px; right:12px; display:flex; gap:4px;">
+          <div style="width:16px; height:2px; background:#1a1a1a; opacity:0.6;"></div>
+          <div style="width:6px; height:2px; background:#1a1a1a; opacity:0.2;"></div>
+          <div style="width:6px; height:2px; background:#1a1a1a; opacity:0.2;"></div>
+          <div style="width:6px; height:2px; background:#1a1a1a; opacity:0.2;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Редакционный сплит</h3>
+      <p>Экран делится: слева большой типографичный заголовок + CTA, справа слайдер фото. Элегантно, читаемо, работает даже без видео. Ближе к журнальной подаче.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="cinematic-slider" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f5f3f0; min-height:200px; position:relative; overflow:hidden; border-bottom:1px solid #e8e2d9;">
+      <!-- Large photo with overlay bottom -->
+      <div style="position:absolute; inset:0; background:linear-gradient(160deg, #d4c4b0 0%, #c8baa8 60%, #b8a088 100%); opacity:0.7;"></div>
+      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(26,26,26,0.7) 0%, transparent 60%);"></div>
+      <!-- Top nav hint -->
+      <div style="position:absolute; top:16px; left:16px; right:16px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-family:Georgia,serif; font-size:12px; color:#faf8f5; letter-spacing:0.08em;">ConceptoFino</span>
+        <span style="font-size:9px; color:rgba(250,248,245,0.5); letter-spacing:0.1em;">ES · EN · RU</span>
+      </div>
+      <!-- Bottom content -->
+      <div style="position:absolute; bottom:0; left:0; right:0; padding:20px;">
+        <div style="font-family:Georgia,serif; font-size:26px; color:#faf8f5; line-height:1.2; margin-bottom:8px;">Espacios que<br>cuentan tu historia</div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+          <div style="background:rgba(184,160,136,0.9); color:#fff; font-size:9px; letter-spacing:0.12em; padding:6px 14px; text-transform:uppercase;">Solicitar consulta</div>
+          <!-- Slide counter -->
+          <div style="color:rgba(250,248,245,0.5); font-size:10px; font-family:Georgia,serif;">02 <span style="opacity:0.4;">/ 05</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Кинематографичный слайдер</h3>
+      <p>Fullscreen фото-слайдер с плавными переходами, текст и CTA внизу с градиентом. Между A и B: атмосферный, но без необходимости в видео. Ken Burns эффект на фото.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px; font-size:12px;">💡 Вариант A можно комбинировать с C: видео при наличии, слайдер как fallback</p>
