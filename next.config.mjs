@@ -4,10 +4,12 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
+  output: 'standalone',
   images: {
     unoptimized: true,
+  },
+  experimental: {
+    trustHostHeader: true,
   },
 }
 

@@ -7,8 +7,8 @@
 
 ## Статус проекта
 
-**Сайт живой:** [conceptofino.es](http://conceptofino.es) (DNS может быть ещё в процессе)  
-**Хостинг:** OVH shared hosting (static export), `ftp.cluster129.hosting.ovh.net`, user `conceyr`  
+**VPS:** 209.38.231.136 (DigitalOcean, Ubuntu 24.04) — **SSR работает**  
+**Домен:** conceptofino.es (DNS нужно перевести с OVH 188.165.132.144 → DigitalOcean 209.38.231.136)  
 **Репозиторий:** github.com/Khromushkin/conceptofino
 
 ---
@@ -47,24 +47,41 @@ npm run dev         # http://localhost:3000
 
 ---
 
-## Деплой на OVH (static)
+## Деплой на DigitalOcean VPS (текущий)
+
+**VPS:** 209.38.231.136 · Ubuntu 24.04 · Node 20 · PM2 + Nginx  
+**SSH:** `ssh -i ~/.ssh/id_ed25519_conceptofino root@209.38.231.136`
 
 ```bash
-# Временно убрать API routes (несовместимы со static export)
-mv src/app/api /tmp/api_backup
-mv "src/app/[locale]/blog/[slug]" /tmp/blog_slug_backup
+nvm use 20
+npm run build       # standalone режим, генерирует .next/standalone/
 
-npm run build       # генерирует out/
+# Загрузить на VPS (rsync, ~65MB)
+rsync -avz -e "ssh -i ~/.ssh/id_ed25519_conceptofino" .next/standalone/ root@209.38.231.136:/var/www/conceptofino/
+rsync -avz -e "ssh -i ~/.ssh/id_ed25519_conceptofino" .next/static/ root@209.38.231.136:/var/www/conceptofino/.next/static/
+rsync -avz -e "ssh -i ~/.ssh/id_ed25519_conceptofino" public/ root@209.38.231.136:/var/www/conceptofino/public/
 
-# Загрузить на хостинг
-lftp -e "set ftp:ssl-allow no; open -u conceyr,ПАРОЛЬ ftp.cluster129.hosting.ovh.net; mirror -R --parallel=5 out/ www/; bye"
-
-# Восстановить
-cp -r /tmp/api_backup src/app/api
-cp -r /tmp/blog_slug_backup "src/app/[locale]/blog/[slug]"
+# Перезапустить
+ssh -i ~/.ssh/id_ed25519_conceptofino root@209.38.231.136 "pm2 restart conceptofino"
 ```
 
-> **Важно:** перед деплоем восстановить middleware в `src/middleware.ts` обратно на next-intl при переезде на VPS.
+> **Особенность:** Next.js middleware генерирует редирект на localhost:3000 при работе за proxy.  
+> Редирект `/` → `/es` обрабатывается Nginx напрямую, минуя middleware.
+
+### SSL (после настройки DNS)
+
+```bash
+# DNS: conceptofino.es → 209.38.231.136 (DigitalOcean)
+apt install -y certbot python3-certbot-nginx
+certbot --nginx -d conceptofino.es -d www.conceptofino.es
+```
+
+---
+
+## Деплой на OVH (устаревший, static export)
+
+Статический деплой больше не используется (API routes не работают, форма открывает WhatsApp).  
+Если нужно — смотри git history для `.htaccess` и `output: 'export'` конфига.
 
 ---
 
