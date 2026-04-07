@@ -42,3 +42,8 @@ next-env.d.ts
 scripts/scraper/output/
 scripts/scraper/output/
 public/images/projects/
+
+# Sanity Studio build output
+studio/dist/
+studio/node_modules/
+studio/.sanity/
