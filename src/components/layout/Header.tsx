@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, ChevronDown } from 'lucide-react'
@@ -20,12 +21,17 @@ type DropdownKey = keyof typeof NAV_ITEMS
 
 export default function Header({ locale }: Props) {
   const t = useTranslations('nav')
+  const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null)
   const lastScrollY = useRef(0)
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Pages with a dark hero image where header text/logo should be white
+  const isHomepage = pathname === `/${locale}` || pathname === `/${locale}/`
+  const darkMode = isHomepage && !isScrolled
 
   useEffect(() => {
     function handleScroll() {
@@ -65,7 +71,7 @@ export default function Header({ locale }: Props) {
         className={cn(
           'fixed top-0 left-0 right-0 z-30 transition-all duration-300',
           isScrolled
-            ? 'bg-white/80 backdrop-blur-md border-b border-brand-light/50 shadow-sm'
+            ? 'bg-white/90 backdrop-blur-md border-b border-brand-light/50 shadow-sm'
             : 'bg-transparent'
         )}
         initial={{ y: 0 }}
@@ -82,7 +88,7 @@ export default function Header({ locale }: Props) {
                 height={40}
                 className={cn(
                   'h-10 w-auto object-contain transition-all duration-300',
-                  isScrolled ? 'brightness-0' : 'brightness-100'
+                  darkMode ? 'brightness-100' : 'brightness-0'
                 )}
                 priority
               />
@@ -98,7 +104,12 @@ export default function Header({ locale }: Props) {
                 >
                   <Link
                     href={section.rootHref}
-                    className="flex items-center gap-1 font-sans text-xs tracking-[0.1em] uppercase text-brand-dark hover:text-brand-accent transition-colors duration-200"
+                    className={cn(
+                    'flex items-center gap-1 font-sans text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-200',
+                    darkMode
+                      ? 'text-white/90 hover:text-white'
+                      : 'text-brand-dark hover:text-brand-accent'
+                  )}
                     aria-expanded={activeDropdown === section.key}
                     aria-haspopup="true"
                   >
@@ -147,7 +158,12 @@ export default function Header({ locale }: Props) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-sans text-xs tracking-[0.1em] uppercase text-brand-dark hover:text-brand-accent transition-colors duration-200"
+                  className={cn(
+                    'font-sans text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-200',
+                    darkMode
+                      ? 'text-white/90 hover:text-white'
+                      : 'text-brand-dark hover:text-brand-accent'
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -157,16 +173,19 @@ export default function Header({ locale }: Props) {
             <div className="hidden lg:flex items-center gap-5">
               <a
                 href="tel:+34657575939"
-                className="font-sans text-xs text-brand-gray hover:text-brand-black transition-colors tracking-wide"
+                className={cn(
+                  'font-sans text-sm transition-colors tracking-wide',
+                  darkMode ? 'text-white/70 hover:text-white' : 'text-brand-gray hover:text-brand-black'
+                )}
               >
                 +34 657 575 939
               </a>
-              <LanguageSwitcher />
+              <LanguageSwitcher light={darkMode} />
             </div>
 
             <button
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden p-2 text-brand-black"
+              className={cn('lg:hidden p-2', darkMode ? 'text-white' : 'text-brand-black')}
               aria-label="Open menu"
             >
               <Menu size={22} />

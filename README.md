@@ -28,8 +28,9 @@
 - Copyright 2026, реальные контактные данные
 
 ### Технически
-- Static export (`output: 'export'`) для OVH shared hosting
-- `.htaccess` с редиректом `/` → `/es/`
+- SSR на DigitalOcean VPS (209.38.231.136): Next.js standalone + PM2 + Nginx
+- next-intl middleware: роутинг `/es/`, `/en/`, `/ru/`
+- Шапка адаптируется: белая на тёмном hero главной, чёрная на светлых страницах
 - Контактная форма и форма лида — при недоступности API открывают WhatsApp с заполненным сообщением
 - Sitemap, robots.txt, JsonLd (LocalBusiness schema)
 - Sanity схемы готовы (projects, materials, services, blog, team, reviews, site-settings)
@@ -87,30 +88,24 @@ certbot --nginx -d conceptofino.es -d www.conceptofino.es
 
 ## Дальнейшие планы
 
-### Приоритет 1 — Контент (можно делать сейчас)
+### Приоритет 1 — Запуск домена
+- [ ] DNS: перевести A-запись `conceptofino.es` с OVH (188.165.132.144) на DigitalOcean (209.38.231.136)
+- [ ] SSL: после DNS → `certbot --nginx -d conceptofino.es -d www.conceptofino.es` на VPS
+- [ ] Sitemap: заменить `conceptofino.com` на `conceptofino.es` в `next-sitemap.config.js`
+
+### Приоритет 2 — Функциональность
+- [ ] Email: настроить отправку писем (ключ Resend или SMTP в `.env.local` на VPS, код уже есть в `src/lib/email.ts`)
+- [ ] Google Analytics / Plausible — добавить `NEXT_PUBLIC_GA_ID` в `.env.local`
+
+### Приоритет 3 — Контент
 - [ ] Заполнить реальный контент через Sanity CMS (`npm run dev` → `/studio`)
 - [ ] Заменить заглушки команды в `src/data/team.ts` на реальные фото
 - [ ] Настроить Google Maps embed в `src/data/site-settings.ts`
 - [ ] Написать 2–3 статьи в блог
 
-### Приоритет 2 — Переезд на VPS
-- [ ] Установить Node.js 20 + PM2 на VPS (188.165.132.144 или новый)
-- [ ] Вернуть `src/middleware.ts` с next-intl роутингом
-- [ ] Убрать `output: 'export'` из `next.config.mjs` — сайт снова станет SSR
-- [ ] Настроить `.env.local` с реальными ключами (SMTP, Sanity, etc.)
-- [ ] Настроить Nginx как reverse proxy → `next start`
-- [ ] SSL сертификат (Let's Encrypt / Certbot)
-
-### Приоритет 3 — Функциональность
-- [ ] Подключить Sanity — сейчас данные захардкожены в `src/data/*.ts`, нужно переключить `src/lib/content/*.ts` на запросы к Sanity API
-- [ ] Настроить email отправку (SMTP в `src/lib/email.ts` — там уже есть код, нужен ключ Resend или SMTP)
-- [ ] Форма контакта → реальная отправка письма (сейчас fallback на WhatsApp)
-- [ ] Подключить Google Analytics / Plausible
-
-### Приоритет 4 — SEO и оптимизация
-- [ ] Настроить `next-sitemap.config.js` с реальным доменом (уже есть conceptofino.es)
-- [ ] Добавить Open Graph изображения для соцсетей
-- [ ] Проверить Core Web Vitals после переезда на VPS
+### Приоритет 4 — SEO
+- [ ] Open Graph изображения для соцсетей
+- [ ] Подключить Sanity API (сейчас данные захардкожены в `src/data/*.ts`)
 
 ---
 
