@@ -1,11 +1,25 @@
+import { sanityClient } from '@/sanity/client'
+import { blogPostsQuery, blogPostBySlugQuery } from '@/sanity/queries'
 import type { BlogPost } from '@/types'
 
-// Visual-first: empty blog, ready for Sanity migration
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  return []
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return []
+  try {
+    return await sanityClient.fetch<BlogPost[]>(blogPostsQuery, {}, { next: { revalidate: 300 } })
+  } catch {
+    return []
+  }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function getBlogPostBySlug(_slug: string): Promise<BlogPost | null> {
-  return null
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return null
+  try {
+    return await sanityClient.fetch<BlogPost | null>(
+      blogPostBySlugQuery,
+      { slug },
+      { next: { revalidate: 300 } }
+    )
+  } catch {
+    return null
+  }
 }
