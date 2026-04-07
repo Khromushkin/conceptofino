@@ -64,7 +64,7 @@ export default function CTASection({ locale }: Props) {
           <p className="font-sans text-xs tracking-[0.25em] uppercase text-brand-accent mb-5">
             {t('label')}
           </p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-cream leading-tight max-w-2xl mx-auto mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-cream leading-tight max-w-2xl mx-auto mb-4 text-balance">
             {t('title')}
           </h2>
           <p className="font-sans text-sm text-brand-cream/50 mb-10 tracking-wide">

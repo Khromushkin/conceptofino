@@ -37,6 +37,7 @@ export async function getMaterialsByCategory(category: MaterialCategory): Promis
 }
 
 export async function getMaterialsByIds(ids: string[]): Promise<Material[]> {
+  if (!ids?.length) return []
   const all = await getMaterials()
   return all.filter((m) => ids.includes(m.id))
 }

@@ -109,7 +109,7 @@ export default function HeroSection({ locale }: Props) {
 
         <h1
           ref={titleRef}
-          className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-cream leading-[1.05] max-w-3xl mb-6"
+          className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-cream leading-[1.05] max-w-3xl mb-6 text-balance"
           style={{ opacity: gsapReady || reduced ? 1 : 0 }}
         >
           {t('title')}

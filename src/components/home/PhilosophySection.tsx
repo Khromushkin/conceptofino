@@ -62,7 +62,7 @@ export default function PhilosophySection() {
             </p>
             <h2
               ref={titleRef}
-              className="font-serif text-3xl lg:text-4xl xl:text-5xl text-brand-black leading-tight"
+              className="font-serif text-3xl lg:text-4xl xl:text-5xl text-brand-black leading-tight text-balance"
             >
               {t('title')}
             </h2>

@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: Props) {
 
   if (!project) notFound()
 
-  const materials = await getMaterialsByIds(project.materialIds)
+  const materials = await getMaterialsByIds(project.materialIds ?? [])
   const t = await getTranslations({ locale, namespace: 'projects' })
 
   return (

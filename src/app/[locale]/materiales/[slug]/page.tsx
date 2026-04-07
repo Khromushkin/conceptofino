@@ -89,7 +89,7 @@ export default async function MaterialSlugPage({ params }: Props) {
 
   const allProjects = await getProjects()
   const relatedProjects = allProjects.filter((p) =>
-    material.projectIds.includes(p.id)
+    material.projectIds?.includes(p.id) ?? false
   )
 
   return (
