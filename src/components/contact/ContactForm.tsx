@@ -38,9 +38,18 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-      setStatus(res.ok ? 'success' : 'error')
+      if (res.ok) {
+        setStatus('success')
+      } else {
+        throw new Error('API unavailable')
+      }
     } catch {
-      setStatus('error')
+      // Static hosting fallback: open WhatsApp with pre-filled message
+      const msg = encodeURIComponent(
+        `Hola, soy ${data.nombre}. Me interesa: ${data.servicio}. ${data.mensaje}`
+      )
+      window.open(`https://wa.me/34657575939?text=${msg}`, '_blank')
+      setStatus('success')
     }
   }
 

@@ -1,5 +1,5 @@
 // src/app/[locale]/blog/page.tsx
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getBlogPosts } from '@/lib/content'
 import SectionHeading from '@/components/ui/SectionHeading'
 
@@ -9,6 +9,7 @@ interface Props {
 
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations({ locale, namespace: 'blog' })
   const posts = await getBlogPosts()
 

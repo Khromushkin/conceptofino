@@ -10,29 +10,29 @@ import HeroSlide from './HeroSlide'
 
 const HERO_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=85',
-    alt: { es: 'Cocina moderna Valencia', en: 'Modern kitchen Valencia', ru: 'Современная кухня Валенсия' },
-    width: 1920, height: 1080,
+    src: '/images/projects/cocinas/0-lg.webp',
+    alt: { es: 'Cocina a medida Valencia', en: 'Custom kitchen Valencia', ru: 'Кухня на заказ Валенсия' },
+    width: 1080, height: 1080,
   },
   {
-    src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=85',
-    alt: { es: 'Salón integrado', en: 'Integrated living room', ru: 'Интегрированная гостиная' },
-    width: 1920, height: 1080,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=85',
+    src: '/images/projects/vestidores/0-lg.webp',
     alt: { es: 'Vestidor a medida', en: 'Custom wardrobe', ru: 'Гардеробная на заказ' },
-    width: 1920, height: 1080,
+    width: 1080, height: 1080,
   },
   {
-    src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1920&q=85',
-    alt: { es: 'Dormitorio diseño', en: 'Bedroom design', ru: 'Дизайн спальни' },
-    width: 1920, height: 1080,
+    src: '/images/projects/armarios/0-lg.webp',
+    alt: { es: 'Armario empotrado Valencia', en: 'Built-in wardrobe Valencia', ru: 'Встроенный шкаф Валенсия' },
+    width: 1080, height: 1080,
   },
   {
-    src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=85',
-    alt: { es: 'Mueble a medida', en: 'Custom furniture', ru: 'Мебель на заказ' },
-    width: 1920, height: 1080,
+    src: '/images/projects/paneles_de_pared_y_techo_de_madera/0-lg.webp',
+    alt: { es: 'Paneles de madera', en: 'Wood panels', ru: 'Деревянные панели' },
+    width: 1080, height: 1080,
+  },
+  {
+    src: '/images/projects/lavabos/0-lg.webp',
+    alt: { es: 'Mueble de baño a medida', en: 'Custom bathroom furniture', ru: 'Мебель для ванной на заказ' },
+    width: 1080, height: 1080,
   },
 ]
 

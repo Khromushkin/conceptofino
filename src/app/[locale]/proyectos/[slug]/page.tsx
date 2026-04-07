@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import {
   getProjectBySlug,
   getRelatedProjects,
@@ -18,6 +18,11 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
+export function generateStaticParams() {
+  const slugs = ['cocina-barrio-del-carmen','vestidor-campanar','armario-empotrado-ruzafa','proyecto-integral-russafa','cocina-eixample','lavabos-bano-medida','paneles-madera-revestimiento']
+  return slugs.map((slug) => ({ slug }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params
   const project = await getProjectBySlug(slug)
@@ -30,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { locale, slug } = await params
+  setRequestLocale(locale)
   const loc = locale as Locale
 
   const [project, related] = await Promise.all([

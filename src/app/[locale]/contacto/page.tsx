@@ -1,6 +1,6 @@
 // src/app/[locale]/contacto/page.tsx
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { buildMetadata } from '@/lib/seo'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { getSiteSettings } from '@/lib/content'
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ContactoPage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
   const loc = locale as Locale
   const [t, settings] = await Promise.all([
     getTranslations({ locale, namespace: 'contact' }),

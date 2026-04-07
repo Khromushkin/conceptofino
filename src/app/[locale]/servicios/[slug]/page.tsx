@@ -11,6 +11,10 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
+export function generateStaticParams() {
+  return ['diseno', 'fabricacion', 'montaje'].map((slug) => ({ slug }))
+}
+
 export default async function ServicePage({ params }: Props) {
   const { locale, slug } = await params
   const loc = locale as Locale

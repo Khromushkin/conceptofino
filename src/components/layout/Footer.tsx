@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import { Globe, Share2, Phone, Mail, MapPin } from 'lucide-react'
 import { getSiteSettings } from '@/lib/content'
@@ -33,9 +34,13 @@ export default async function Footer({ locale }: Props) {
       <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
           <div className="lg:col-span-1">
-            <p className="font-serif text-xl text-brand-cream tracking-wide mb-2">
-              ConceptoFino
-            </p>
+            <Image
+              src="/images/logo.webp"
+              alt="ConceptoFino"
+              width={130}
+              height={44}
+              className="h-11 w-auto mb-2 brightness-100"
+            />
             <p className="font-sans text-xs tracking-[0.12em] text-brand-accent uppercase mb-5">
               {t('tagline')}
             </p>

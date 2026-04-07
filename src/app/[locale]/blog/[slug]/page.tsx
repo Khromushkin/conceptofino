@@ -6,6 +6,10 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
+export function generateStaticParams() {
+  return []
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = await getBlogPostBySlug(slug)

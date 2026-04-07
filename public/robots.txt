@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /studio/
+
+# Host
+Host: https://conceptofino.com
+
+# Sitemaps
+Sitemap: https://conceptofino.com/sitemap.xml

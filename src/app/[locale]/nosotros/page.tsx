@@ -1,7 +1,7 @@
 // src/app/[locale]/nosotros/page.tsx
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { buildMetadata } from '@/lib/seo'
 import { getTeam, getReviews } from '@/lib/content'
 import type { Locale } from '@/types'
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function NosotrosPage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
   const loc = locale as Locale
   const [team, reviews, t] = await Promise.all([
     getTeam(),
@@ -53,8 +54,8 @@ export default async function NosotrosPage({ params }: Props) {
               <RevealOnScroll direction="left">
                 <div className="relative h-[420px] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1609220136736-443140cfeaa8?w=900&q=80"
-                    alt="ConceptoFino workshop"
+                    src="/images/projects/paneles_de_pared_y_techo_de_madera/2-lg.webp"
+                    alt="ConceptoFino taller"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"

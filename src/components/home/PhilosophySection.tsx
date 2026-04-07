@@ -46,7 +46,7 @@ export default function PhilosophySection() {
           <RevealOnScroll direction="left">
             <div className="relative h-[420px] lg:h-[560px] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80"
+                src="/images/projects/paneles_de_pared_y_techo_de_madera/1-lg.webp"
                 alt="ConceptoFino workshop"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

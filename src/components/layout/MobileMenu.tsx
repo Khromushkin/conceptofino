@@ -53,9 +53,7 @@ export default function MobileMenu({ isOpen, onClose, locale }: Props) {
             transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
           >
             <div className="flex items-center justify-between px-6 py-5 border-b border-brand-light">
-              <span className="font-serif text-lg text-brand-black tracking-wide">
-                ConceptoFino
-              </span>
+              <img src="/images/logo.webp" alt="ConceptoFino" className="h-8 w-auto brightness-0" />
               <button
                 onClick={onClose}
                 aria-label="Close menu"

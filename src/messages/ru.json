@@ -15,6 +15,7 @@
     "diseno": "Дизайн интерьера",
     "fabricacion": "Производство",
     "montaje": "Монтаж и логистика",
+    "all": "Все",
     "blog": "Блог",
     "about": "О нас",
     "contact": "Контакты"
@@ -112,7 +113,7 @@
     "nav_title": "Навигация",
     "services_title": "Услуги",
     "contact_title": "Контакты",
-    "copyright": "© 2024 ConceptoFino. Все права защищены.",
+    "copyright": "© 2026 ConceptoFino. Все права защищены.",
     "privacy": "Политика конфиденциальности",
     "legal": "Правовое уведомление"
   },

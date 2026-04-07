@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, ChevronDown } from 'lucide-react'
@@ -46,10 +47,10 @@ export default function Header({ locale }: Props) {
     closeTimerRef.current = setTimeout(() => setActiveDropdown(null), 150)
   }
 
-  const navSections: { key: DropdownKey; label: string }[] = [
-    { key: 'proyectos', label: t('projects') },
-    { key: 'materiales', label: t('materials') },
-    { key: 'servicios', label: t('services') },
+  const navSections: { key: DropdownKey; label: string; rootHref: string }[] = [
+    { key: 'proyectos', label: t('projects'), rootHref: `/${locale}/proyectos` },
+    { key: 'materiales', label: t('materials'), rootHref: `/${locale}/materiales` },
+    { key: 'servicios', label: t('services'), rootHref: `/${locale}/servicios` },
   ]
 
   const simpleLinks = [
@@ -73,11 +74,18 @@ export default function Header({ locale }: Props) {
       >
         <div className="max-w-screen-xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            <Link
-              href={`/${locale}`}
-              className="font-serif text-xl text-brand-black tracking-wide hover:text-brand-accent transition-colors"
-            >
-              ConceptoFino
+            <Link href={`/${locale}`} className="flex items-center hover:opacity-80 transition-opacity">
+              <Image
+                src="/images/logo.webp"
+                alt="ConceptoFino"
+                width={120}
+                height={40}
+                className={cn(
+                  'h-10 w-auto object-contain transition-all duration-300',
+                  isScrolled ? 'brightness-0' : 'brightness-100'
+                )}
+                priority
+              />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-6">
@@ -88,14 +96,15 @@ export default function Header({ locale }: Props) {
                   onMouseEnter={() => openDropdown(section.key)}
                   onMouseLeave={scheduleClose}
                 >
-                  <button
+                  <Link
+                    href={section.rootHref}
                     className="flex items-center gap-1 font-sans text-xs tracking-[0.1em] uppercase text-brand-dark hover:text-brand-accent transition-colors duration-200"
                     aria-expanded={activeDropdown === section.key}
                     aria-haspopup="true"
                   >
                     {section.label}
                     <ChevronDown size={12} />
-                  </button>
+                  </Link>
 
                   <AnimatePresence>
                     {activeDropdown === section.key && (
@@ -109,6 +118,14 @@ export default function Header({ locale }: Props) {
                         onMouseLeave={scheduleClose}
                       >
                         <ul className="py-2">
+                          <li>
+                            <Link
+                              href={section.rootHref}
+                              className="block px-4 py-2.5 font-sans text-xs tracking-wide text-brand-accent hover:bg-brand-cream transition-colors duration-150 border-b border-brand-light"
+                            >
+                              {t('all')} →
+                            </Link>
+                          </li>
                           {NAV_ITEMS[section.key].map((item) => (
                             <li key={item.href}>
                               <Link

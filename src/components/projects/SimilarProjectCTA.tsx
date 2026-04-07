@@ -22,7 +22,7 @@ interface Props {
   locale: Locale
 }
 
-export default function SimilarProjectCTA({ projectSlug, locale: _locale }: Props) {
+export default function SimilarProjectCTA({ projectSlug }: Props) {
   const t = useTranslations('lead_form')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -42,9 +42,17 @@ export default function SimilarProjectCTA({ projectSlug, locale: _locale }: Prop
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, projectSlug }),
       })
-      setStatus(res.ok ? 'success' : 'error')
+      if (res.ok) {
+        setStatus('success')
+      } else {
+        throw new Error('API unavailable')
+      }
     } catch {
-      setStatus('error')
+      const msg = encodeURIComponent(
+        `Hola, soy ${data.nombre} (${data.telefono}). Me interesa un proyecto similar a: ${projectSlug}`
+      )
+      window.open(`https://wa.me/34657575939?text=${msg}`, '_blank')
+      setStatus('success')
     }
   }
 

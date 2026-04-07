@@ -53,7 +53,7 @@ export default function CTASection({ locale }: Props) {
         className="absolute inset-[-20%] bg-cover bg-center"
         style={{
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&q=80)',
+            'url(/images/projects/cocinas/1-lg.webp)',
         }}
       />
       <div className="absolute inset-0 bg-brand-black/75" />

@@ -35,9 +35,13 @@ export default function MaterialCard({ material, locale }: Props) {
         </motion.div>
         <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/10 transition-colors duration-500" />
       </div>
-      <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-brand-accent mb-1">
+      <Link
+        href={`/${locale}/materiales/${material.category}`}
+        onClick={(e) => e.stopPropagation()}
+        className="font-sans text-[10px] tracking-[0.15em] uppercase text-brand-accent mb-1 hover:underline inline-block"
+      >
         {material.category}
-      </p>
+      </Link>
       <h3 className="font-serif text-lg text-brand-black group-hover:text-brand-accent transition-colors duration-200">
         {getLocalizedField(material.title, locale)}
       </h3>

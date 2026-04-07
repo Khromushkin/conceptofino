@@ -1,5 +1,15 @@
 import type { Project } from '@/types'
 
+// Helper: builds a standard image object for locally-optimized WebP photos
+function img(category: string, idx: number, altEs: string, altEn: string, altRu: string) {
+  return {
+    src: `/images/projects/${category}/${idx}-lg.webp`,
+    alt: { es: altEs, en: altEn, ru: altRu },
+    width: 1080,
+    height: 1080,
+  }
+}
+
 export const projects: Project[] = [
   {
     id: 'p1',
@@ -29,15 +39,12 @@ export const projects: Project[] = [
       en: 'Multifunctional central island with Silestone countertop, cabinets with natural oak veneer fronts, and integrated lighting system that defines zones without physical barriers.',
       ru: 'Многофункциональный центральный остров со столешницей Silestone, шкафы с фасадами из натурального дубового шпона и система интегрированного освещения.',
     },
-    mainImage: {
-      src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80',
-      alt: { es: 'Cocina moderna integrada', en: 'Modern integrated kitchen', ru: 'Современная интегрированная кухня' },
-      width: 1400, height: 933,
-    },
+    mainImage: img('cocinas', 0, 'Cocina moderna integrada', 'Modern integrated kitchen', 'Современная интегрированная кухня'),
     gallery: [
-      { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80', alt: { es: 'Vista general', en: 'General view', ru: 'Общий вид' }, width: 1400, height: 933 },
-      { src: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1400&q=80', alt: { es: 'Isla central', en: 'Central island', ru: 'Центральный остров' }, width: 1400, height: 933 },
-      { src: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=80', alt: { es: 'Detalle armarios', en: 'Cabinet detail', ru: 'Деталь шкафов' }, width: 1200, height: 800 },
+      img('cocinas', 0, 'Vista general cocina', 'Kitchen general view', 'Кухня общий вид'),
+      img('cocinas', 1, 'Isla central', 'Central island', 'Центральный остров'),
+      img('cocinas', 2, 'Detalle armarios', 'Cabinet detail', 'Деталь шкафов'),
+      img('cocinas', 3, 'Zona de cocción', 'Cooking area', 'Зона готовки'),
     ],
     materialIds: ['m1', 'm3'],
     seo: {
@@ -69,8 +76,13 @@ export const projects: Project[] = [
       en: 'Complete use of every corner with custom modules, central island with drawers and grey velvet upholstery.',
       ru: 'Максимальное использование каждого угла с модулями на заказ, центральным островом с ящиками и обивкой из серого бархата.',
     },
-    mainImage: { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80', alt: { es: 'Vestidor elegante', en: 'Elegant wardrobe', ru: 'Элегантная гардеробная' }, width: 1400, height: 933 },
-    gallery: [{ src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80', alt: { es: 'Vista general vestidor', en: 'Wardrobe general view', ru: 'Гардеробная общий вид' }, width: 1400, height: 933 }],
+    mainImage: img('vestidores', 0, 'Vestidor elegante', 'Elegant wardrobe', 'Элегантная гардеробная'),
+    gallery: [
+      img('vestidores', 0, 'Vista general vestidor', 'Wardrobe general view', 'Гардеробная общий вид'),
+      img('vestidores', 1, 'Interior vestidor', 'Wardrobe interior', 'Интерьер гардеробной'),
+      img('vestidores', 2, 'Detalle cajones', 'Drawer detail', 'Деталь ящиков'),
+      img('vestidores', 3, 'Espejo y accesorios', 'Mirror and accessories', 'Зеркало и аксессуары'),
+    ],
     materialIds: ['m2', 'm4'],
     seo: {
       metaTitle: { es: 'Vestidor a Medida Campanar | ConceptoFino Valencia', en: 'Custom Wardrobe Campanar | ConceptoFino Valencia', ru: 'Гардеробная на заказ | ConceptoFino Валенсия' },
@@ -79,34 +91,39 @@ export const projects: Project[] = [
   },
   {
     id: 'p3',
-    slug: 'mueble-tv-benimaclet',
+    slug: 'armario-empotrado-ruzafa',
     category: 'muebles',
     featured: true,
     order: 3,
     year: 2024,
-    location: 'Benimaclet, Valencia',
-    title: { es: 'Mueble TV + Librería a Medida', en: 'Custom TV Unit + Bookcase', ru: 'ТВ-тумба + Книжный шкаф на заказ' },
+    location: 'Ruzafa, Valencia',
+    title: { es: 'Armario Empotrado a Medida', en: 'Custom Built-In Wardrobe', ru: 'Встроенный шкаф на заказ' },
     description: {
-      es: 'Unidad de 5 metros lineal que integra TV, zona de almacenaje y biblioteca. Lacado en blanco roto con nichos de luz indirecta LED.',
-      en: '5 linear metre unit integrating TV, storage zone and library. Off-white lacquer with indirect LED light niches.',
-      ru: 'Блок 5 погонных метров, интегрирующий телевизор, зону хранения и библиотеку. Лак цвета слоновой кости с нишами с косвенной LED-подсветкой.',
+      es: 'Armario empotrado de pared completa en lacado blanco mate con detalles en madera natural. Puertas sin tirador de suelo a techo para maximizar la altura.',
+      en: 'Full-wall built-in wardrobe in matte white lacquer with natural wood details. Handle-free floor-to-ceiling doors to maximise height.',
+      ru: 'Встроенный шкаф на всю стену в матовом белом лаке с деталями из натурального дерева. Безручечные двери от пола до потолка для максимальной высоты.',
     },
     challenge: {
-      es: 'Pared de 5 metros frente al sofá que el cliente quería aprovechar al máximo sin abrumar el espacio.',
-      en: '5-metre wall facing the sofa that the client wanted to maximise without overwhelming the space.',
-      ru: 'Стена 5 метров напротив дивана, которую клиент хотел максимально использовать, не перегружая пространство.',
+      es: 'El cliente necesitaba almacenaje masivo sin que el armario dominara visualmente el dormitorio.',
+      en: 'The client needed massive storage without the wardrobe visually dominating the bedroom.',
+      ru: 'Клиенту нужно было максимальное хранение, чтобы шкаф не доминировал визуально в спальне.',
     },
     solution: {
-      es: 'Diseño asimétrico con módulos de diferentes alturas, creando dinamismo visual. Iluminación LED indirecta en los nichos abiertos.',
-      en: 'Asymmetric design with modules of different heights, creating visual dynamism. Indirect LED lighting in open niches.',
-      ru: 'Асимметричный дизайн с модулями разной высоты. Косвенная LED-подсветка в открытых нишах.',
+      es: 'Frentes lacados en blanco roto sin tirador con apertura push, organizador interior modular y tira de luz LED oculta en el rodapié.',
+      en: 'Off-white lacquered push-open fronts with no handles, modular interior organiser and hidden LED strip in the skirting.',
+      ru: 'Лакированные фасады без ручек с push-open, модульный внутренний органайзер и скрытая LED-лента в плинтусе.',
     },
-    mainImage: { src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=80', alt: { es: 'Mueble TV a medida', en: 'Custom TV unit', ru: 'ТВ-тумба на заказ' }, width: 1400, height: 933 },
-    gallery: [{ src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=80', alt: { es: 'Mueble TV vista general', en: 'TV unit general view', ru: 'ТВ-тумба общий вид' }, width: 1400, height: 933 }],
+    mainImage: img('armarios', 0, 'Armario empotrado', 'Built-in wardrobe', 'Встроенный шкаф'),
+    gallery: [
+      img('armarios', 0, 'Vista frontal armario', 'Wardrobe front view', 'Вид спереди шкафа'),
+      img('armarios', 1, 'Detalle puertas', 'Door detail', 'Деталь дверей'),
+      img('armarios', 2, 'Interior organizado', 'Organised interior', 'Организованный интерьер'),
+      img('armarios', 3, 'Acabado lateral', 'Side finish', 'Боковая отделка'),
+    ],
     materialIds: ['m3'],
     seo: {
-      metaTitle: { es: 'Mueble TV a Medida Benimaclet | ConceptoFino Valencia', en: 'Custom TV Unit Benimaclet | ConceptoFino Valencia', ru: 'ТВ-тумба на заказ | ConceptoFino Валенсия' },
-      metaDescription: { es: 'Mueble TV y librería a medida en Valencia. 5 metros lineales de almacenaje personalizado.', en: 'Custom TV unit and bookcase in Valencia. 5 linear metres of personalised storage.', ru: 'ТВ-тумба и книжный шкаф на заказ в Валенсии.' },
+      metaTitle: { es: 'Armario Empotrado a Medida Ruzafa | ConceptoFino Valencia', en: 'Custom Built-In Wardrobe Ruzafa | ConceptoFino Valencia', ru: 'Встроенный шкаф на заказ | ConceptoFino Валенсия' },
+      metaDescription: { es: 'Armario empotrado a medida de pared completa en Valencia.', en: 'Full-wall custom built-in wardrobe in Valencia.', ru: 'Встроенный шкаф на заказ на всю стену в Валенсии.' },
     },
   },
   {
@@ -133,10 +150,13 @@ export const projects: Project[] = [
       en: 'Neutral palette with natural oak, microcement and Volakas marble. 100% custom furniture in all spaces.',
       ru: 'Нейтральная палитра с натуральным дубом, микроцементом и мрамором Volakas. Мебель 100% на заказ во всех помещениях.',
     },
-    mainImage: { src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=80', alt: { es: 'Proyecto integral Ruzafa', en: 'Complete Ruzafa project', ru: 'Полный проект Русафа' }, width: 1400, height: 933 },
+    mainImage: img('cocinas', 8, 'Proyecto integral Ruzafa', 'Complete Ruzafa project', 'Полный проект Русафа'),
     gallery: [
-      { src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=80', alt: { es: 'Salón', en: 'Living room', ru: 'Гостиная' }, width: 1400, height: 933 },
-      { src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=80', alt: { es: 'Dormitorio', en: 'Bedroom', ru: 'Спальня' }, width: 1400, height: 933 },
+      img('cocinas', 8, 'Cocina integrada', 'Integrated kitchen', 'Интегрированная кухня'),
+      img('vestidores', 4, 'Vestidor principal', 'Main wardrobe', 'Главная гардеробная'),
+      img('lavabos', 5, 'Baño principal', 'Main bathroom', 'Главная ванная'),
+      img('paneles_de_pared_y_techo_de_madera', 4, 'Paneles salón', 'Living room panels', 'Панели гостиной'),
+      img('tabiques_techos_decoracion_listones_madera', 1, 'Tabique decorativo', 'Decorative partition', 'Декоративная перегородка'),
     ],
     materialIds: ['m1', 'm2'],
     seo: {
@@ -168,12 +188,91 @@ export const projects: Project[] = [
       en: 'Combination of noble materials (solid oak, natural stone) with industrial elements (exposed pipes, cable lighting).',
       ru: 'Сочетание благородных материалов с индустриальными элементами (открытые трубы, кабельное освещение).',
     },
-    mainImage: { src: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=1400&q=80', alt: { es: 'Cocina industrial', en: 'Industrial kitchen', ru: 'Индустриальная кухня' }, width: 1400, height: 933 },
-    gallery: [{ src: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=1400&q=80', alt: { es: 'Vista general cocina', en: 'Kitchen general view', ru: 'Кухня общий вид' }, width: 1400, height: 933 }],
+    mainImage: img('cocinas', 4, 'Cocina industrial', 'Industrial kitchen', 'Индустриальная кухня'),
+    gallery: [
+      img('cocinas', 4, 'Vista general cocina', 'Kitchen general view', 'Кухня общий вид'),
+      img('cocinas', 5, 'Detalle encimera', 'Countertop detail', 'Деталь столешницы'),
+      img('cocinas', 6, 'Zona de lavado', 'Washing area', 'Зона мойки'),
+      img('cocinas', 7, 'Almacenaje superior', 'Upper storage', 'Верхнее хранение'),
+    ],
     materialIds: ['m1', 'm3'],
     seo: {
       metaTitle: { es: 'Cocina Industrial Eixample Valencia | ConceptoFino', en: 'Industrial Kitchen Eixample Valencia | ConceptoFino', ru: 'Индустриальная кухня Эйшампле | ConceptoFino' },
       metaDescription: { es: 'Cocina industrial a medida en Eixample, Valencia.', en: 'Custom industrial kitchen in Eixample, Valencia.', ru: 'Индустриальная кухня на заказ в Эйшампле, Валенсия.' },
+    },
+  },
+  {
+    id: 'p6',
+    slug: 'lavabos-bano-medida',
+    category: 'muebles',
+    featured: false,
+    order: 6,
+    year: 2024,
+    location: 'Valencia',
+    title: { es: 'Muebles de Baño a Medida', en: 'Custom Bathroom Furniture', ru: 'Мебель для ванной на заказ' },
+    description: {
+      es: 'Muebles de baño y lavabos a medida que combinan funcionalidad y diseño. Maderas resistentes a la humedad, encimeras de Corian y herrajes de alta gama.',
+      en: 'Custom bathroom furniture and vanities combining functionality and design. Moisture-resistant woods, Corian countertops and premium hardware.',
+      ru: 'Мебель для ванной комнаты на заказ, сочетающая функциональность и дизайн. Влагостойкие породы дерева, столешницы Corian и фурнитура премиум-класса.',
+    },
+    challenge: {
+      es: 'Crear muebles de baño que aguanten la humedad sin sacrificar la estética premium.',
+      en: 'Create bathroom furniture that withstands humidity without sacrificing premium aesthetics.',
+      ru: 'Создать мебель для ванной, устойчивую к влаге, не жертвуя премиальной эстетикой.',
+    },
+    solution: {
+      es: 'MDF hidrófugo con lacados especiales para zonas húmedas, bisagras de acero inoxidable y encimeras de Corian sin juntas.',
+      en: 'Moisture-resistant MDF with special lacquers for wet areas, stainless steel hinges and seamless Corian countertops.',
+      ru: 'Гидрофобный МДФ со специальными лаками для влажных зон, петли из нержавеющей стали и столешницы Corian без швов.',
+    },
+    mainImage: img('lavabos', 0, 'Mueble de baño elegante', 'Elegant bathroom vanity', 'Элегантная тумба для ванной'),
+    gallery: [
+      img('lavabos', 0, 'Lavabo principal', 'Main vanity', 'Основная тумба'),
+      img('lavabos', 1, 'Detalle lavabo', 'Vanity detail', 'Деталь тумбы'),
+      img('lavabos', 2, 'Espejo y luz', 'Mirror and lighting', 'Зеркало и освещение'),
+      img('lavabos', 3, 'Almacenaje baño', 'Bathroom storage', 'Хранение в ванной'),
+    ],
+    materialIds: ['m3', 'm4'],
+    seo: {
+      metaTitle: { es: 'Muebles de Baño a Medida Valencia | ConceptoFino', en: 'Custom Bathroom Furniture Valencia | ConceptoFino', ru: 'Мебель для ванной на заказ Валенсия | ConceptoFino' },
+      metaDescription: { es: 'Muebles de baño y lavabos a medida en Valencia.', en: 'Custom bathroom furniture and vanities in Valencia.', ru: 'Мебель для ванной и тумбы на заказ в Валенсии.' },
+    },
+  },
+  {
+    id: 'p7',
+    slug: 'paneles-madera-revestimiento',
+    category: 'muebles',
+    featured: false,
+    order: 7,
+    year: 2023,
+    location: 'Valencia',
+    title: { es: 'Paneles y Revestimientos de Madera', en: 'Wood Panels & Cladding', ru: 'Деревянные панели и облицовка' },
+    description: {
+      es: 'Revestimientos de pared y techo en madera natural y listones. Técnicas de instalación flotante para paredes de salón, dormitorios y espacios de trabajo.',
+      en: 'Natural wood wall and ceiling cladding with slat systems. Floating installation techniques for living rooms, bedrooms and workspaces.',
+      ru: 'Облицовка стен и потолков из натурального дерева и реек. Техники плавающей установки для гостиных, спален и рабочих пространств.',
+    },
+    challenge: {
+      es: 'Dar calidez y textura a espacios modernos usando madera de forma sostenible y con instalación no invasiva.',
+      en: 'Adding warmth and texture to modern spaces using wood sustainably with non-invasive installation.',
+      ru: 'Добавить тепло и текстуру в современные пространства с использованием дерева устойчивым способом.',
+    },
+    solution: {
+      es: 'Sistema de listones de roble sobre rastreles con acabado natural aceite, instalación reversible y efecto acústico absorbente.',
+      en: 'Oak slat system on battens with natural oil finish, reversible installation and sound-absorbing effect.',
+      ru: 'Система дубовых реек на лагах с натуральной масляной отделкой, обратимой установкой и звукопоглощающим эффектом.',
+    },
+    mainImage: img('paneles_de_pared_y_techo_de_madera', 0, 'Panel de madera', 'Wood panel', 'Деревянная панель'),
+    gallery: [
+      img('paneles_de_pared_y_techo_de_madera', 0, 'Panel pared salón', 'Living room wall panel', 'Панель гостиной'),
+      img('paneles_de_pared_y_techo_de_madera', 1, 'Listones techo', 'Ceiling slats', 'Рейки потолка'),
+      img('paneles_de_pared_y_techo_de_madera', 2, 'Detalle acabado', 'Finish detail', 'Деталь отделки'),
+      img('paneles_de_pared_y_techo_de_madera', 3, 'Vista completa', 'Full view', 'Полный вид'),
+    ],
+    materialIds: ['m1', 'm2'],
+    seo: {
+      metaTitle: { es: 'Paneles de Madera a Medida Valencia | ConceptoFino', en: 'Custom Wood Panels Valencia | ConceptoFino', ru: 'Деревянные панели на заказ Валенсия | ConceptoFino' },
+      metaDescription: { es: 'Paneles y revestimientos de madera a medida en Valencia.', en: 'Custom wood panels and cladding in Valencia.', ru: 'Деревянные панели и облицовка на заказ в Валенсии.' },
     },
   },
 ]

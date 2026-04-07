@@ -2,17 +2,88 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getMaterialBySlug, getProjects } from '@/lib/content'
-import type { Locale } from '@/types'
+import { getMaterialBySlug, getMaterialsByCategory, getProjects } from '@/lib/content'
+import type { Locale, MaterialCategory } from '@/types'
 import { getLocalizedField } from '@/lib/utils'
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
-export default async function MaterialPage({ params }: Props) {
+export function generateStaticParams() {
+  const slugs = ['roble-natural','nogal-americano','acero-inoxidable','piedra-natural','terciopelo-gris','maderas','piedra','metales','textiles']
+  return slugs.map((slug) => ({ slug }))
+}
+
+const CATEGORIES: MaterialCategory[] = ['maderas', 'piedra', 'metales', 'textiles']
+
+const categoryLabels: Record<MaterialCategory, Record<string, string>> = {
+  maderas: { es: 'Maderas', en: 'Woods', ru: 'Дерево' },
+  piedra: { es: 'Piedra', en: 'Stone', ru: 'Камень' },
+  metales: { es: 'Metales', en: 'Metals', ru: 'Металлы' },
+  textiles: { es: 'Textiles', en: 'Textiles', ru: 'Текстиль' },
+}
+
+export default async function MaterialSlugPage({ params }: Props) {
   const { locale, slug } = await params
   const loc = locale as Locale
+
+  // If slug is a category name, render category listing
+  if (CATEGORIES.includes(slug as MaterialCategory)) {
+    const category = slug as MaterialCategory
+    const categoryMaterials = await getMaterialsByCategory(category)
+    const label = categoryLabels[category][loc] ?? categoryLabels[category].es
+
+    return (
+      <div className="pt-24 lg:pt-32">
+        <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-16">
+          <div className="mb-12">
+            <Link
+              href={`/${loc}/materiales`}
+              className="font-sans text-xs tracking-[0.15em] uppercase text-brand-accent hover:underline mb-4 inline-block"
+            >
+              ← {loc === 'es' ? 'Todos los materiales' : loc === 'ru' ? 'Все материалы' : 'All materials'}
+            </Link>
+            <h1 className="font-serif text-4xl lg:text-5xl text-brand-black">{label}</h1>
+          </div>
+
+          {categoryMaterials.length === 0 ? (
+            <p className="font-sans text-brand-gray">
+              {loc === 'es' ? 'Próximamente.' : loc === 'ru' ? 'Скоро.' : 'Coming soon.'}
+            </p>
+          ) : (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {categoryMaterials.map((mat) => (
+                <Link
+                  key={mat.id}
+                  href={`/${loc}/materiales/${mat.slug}`}
+                  className="group block"
+                >
+                  <div className="relative overflow-hidden aspect-square mb-4">
+                    <Image
+                      src={mat.textureImage.src}
+                      alt={getLocalizedField(mat.textureImage.alt, loc)}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-brand-accent mb-1">
+                    {mat.category}
+                  </p>
+                  <h3 className="font-serif text-lg text-brand-black group-hover:text-brand-accent transition-colors duration-200">
+                    {getLocalizedField(mat.title, loc)}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  // Otherwise treat slug as a material slug
   const material = await getMaterialBySlug(slug)
   if (!material) notFound()
 
@@ -35,9 +106,12 @@ export default async function MaterialPage({ params }: Props) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-black/60 to-transparent" />
         <div className="absolute bottom-8 left-0 right-0 max-w-screen-xl mx-auto px-6 lg:px-10">
-          <p className="font-sans text-xs tracking-[0.2em] uppercase text-brand-accent mb-2">
+          <Link
+            href={`/${loc}/materiales/${material.category}`}
+            className="font-sans text-xs tracking-[0.2em] uppercase text-brand-accent mb-2 inline-block hover:underline"
+          >
             {material.category}
-          </p>
+          </Link>
           <h1 className="font-serif text-4xl text-brand-cream">
             {getLocalizedField(material.title, loc)}
           </h1>

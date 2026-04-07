@@ -15,6 +15,7 @@
     "diseno": "Interior Design",
     "fabricacion": "Manufacturing",
     "montaje": "Assembly & Logistics",
+    "all": "All",
     "blog": "Blog",
     "about": "About Us",
     "contact": "Contact"
@@ -112,7 +113,7 @@
     "nav_title": "Navigation",
     "services_title": "Services",
     "contact_title": "Contact",
-    "copyright": "© 2024 ConceptoFino. All rights reserved.",
+    "copyright": "© 2026 ConceptoFino. All rights reserved.",
     "privacy": "Privacy Policy",
     "legal": "Legal Notice"
   },

@@ -1,8 +1,9 @@
-import createMiddleware from 'next-intl/middleware'
-import { routing } from './i18n/routing'
+// Middleware disabled for static export (output: 'export')
+// Locale routing is handled by .htaccess on static hosting
+// Re-enable when deploying to Node.js server / Vercel
 
-export default createMiddleware(routing)
+export function middleware() {}
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|studio|.*\\..*).*)'],
+  matcher: [],
 }

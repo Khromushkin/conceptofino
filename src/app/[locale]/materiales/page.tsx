@@ -4,7 +4,6 @@ import { getMaterials } from '@/lib/content'
 import { buildMetadata } from '@/lib/seo'
 import type { Locale } from '@/types'
 import MaterialGrid from '@/components/materials/MaterialGrid'
-import SectionHeading from '@/components/ui/SectionHeading'
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -28,12 +27,11 @@ export default async function MaterialesPage({ params }: Props) {
   return (
     <div className="pt-24 lg:pt-32">
       <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-16">
-        <SectionHeading
-          label="Catálogo"
-          title="Nuestros materiales"
-          subtitle="Solo los mejores materiales para espacios que duran toda la vida."
-          className="mb-16"
-        />
+        <div className="mb-16">
+          <p className="font-sans text-xs tracking-[0.25em] uppercase text-brand-accent mb-3">Catálogo</p>
+          <h1 className="font-serif text-4xl lg:text-5xl text-brand-black mb-4">Nuestros materiales</h1>
+          <p className="font-sans text-brand-gray">Solo los mejores materiales para espacios que duran toda la vida.</p>
+        </div>
         <MaterialGrid materials={materials} locale={locale as Locale} />
       </div>
     </div>

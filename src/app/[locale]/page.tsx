@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { setRequestLocale } from 'next-intl/server'
 import { getFeaturedProjects } from '@/lib/content'
 import type { Locale } from '@/types'
 import { buildMetadata } from '@/lib/seo'
@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
   const featuredProjects = await getFeaturedProjects()
 
   return (
