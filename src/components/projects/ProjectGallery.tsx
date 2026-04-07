@@ -1,7 +1,7 @@
 // src/components/projects/ProjectGallery.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -15,6 +15,7 @@ interface Props {
 
 export default function ProjectGallery({ images, locale }: Props) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const touchStartX = useRef<number>(0)
 
   function prev() {
     setLightboxIndex((i) =>
@@ -26,6 +27,29 @@ export default function ProjectGallery({ images, locale }: Props) {
     setLightboxIndex((i) =>
       i !== null ? (i + 1) % images.length : 0
     )
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (lightboxIndex === null) return
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'ArrowLeft') prev()
+      else if (e.key === 'ArrowRight') next()
+      else if (e.key === 'Escape') setLightboxIndex(null)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightboxIndex]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Touch swipe handlers
+  function onTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    const delta = e.changedTouches[0].clientX - touchStartX.current
+    if (delta < -50) next()
+    else if (delta > 50) prev()
   }
 
   return (
@@ -66,6 +90,8 @@ export default function ProjectGallery({ images, locale }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightboxIndex(null)}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
           >
             {/* Close */}
             <button
