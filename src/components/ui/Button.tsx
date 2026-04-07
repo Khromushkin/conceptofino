@@ -20,9 +20,9 @@ const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
 }
 
 const sizeClasses: Record<NonNullable<ButtonProps['size']>, string> = {
-  sm: 'px-4 py-2 text-xs tracking-widest uppercase',
-  md: 'px-6 py-3 text-xs tracking-widest uppercase',
-  lg: 'px-8 py-4 text-sm tracking-widest uppercase',
+  sm: 'px-4 py-2 text-xs tracking-[0.2em] uppercase',
+  md: 'px-6 py-3 text-xs tracking-[0.2em] uppercase',
+  lg: 'px-8 py-4 text-sm tracking-[0.2em] uppercase',
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

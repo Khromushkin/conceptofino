@@ -50,7 +50,7 @@ function AnimatedStat({ value, label, delay }: StatProps) {
       <p className="font-serif text-4xl lg:text-5xl text-brand-black leading-none mb-1">
         {displayed}
       </p>
-      <p className="font-sans text-xs tracking-[0.15em] uppercase text-brand-gray">
+      <p className="font-sans text-xs tracking-[0.2em] uppercase text-brand-gray">
         {label}
       </p>
     </div>

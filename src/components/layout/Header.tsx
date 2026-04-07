@@ -105,7 +105,7 @@ export default function Header({ locale }: Props) {
                   <Link
                     href={section.rootHref}
                     className={cn(
-                    'flex items-center gap-1 font-sans text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-200',
+                    'flex items-center gap-1 font-sans text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-200',
                     darkMode
                       ? 'text-white/90 hover:text-white'
                       : 'text-brand-dark hover:text-brand-accent'
@@ -159,7 +159,7 @@ export default function Header({ locale }: Props) {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'font-sans text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-200',
+                    'font-sans text-sm font-medium tracking-[0.15em] uppercase transition-colors duration-200',
                     darkMode
                       ? 'text-white/90 hover:text-white'
                       : 'text-brand-dark hover:text-brand-accent'

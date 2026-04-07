@@ -106,7 +106,7 @@ export default function SimilarProjectCTA({ projectSlug }: Props) {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full bg-brand-accent text-white font-sans text-xs tracking-[0.15em] uppercase py-3.5 hover:bg-brand-dark transition-colors disabled:opacity-50"
+                className="w-full bg-brand-accent text-white font-sans text-xs tracking-[0.2em] uppercase py-3.5 hover:bg-brand-dark transition-colors disabled:opacity-50"
               >
                 {status === 'loading' ? '...' : t('submit')}
               </button>

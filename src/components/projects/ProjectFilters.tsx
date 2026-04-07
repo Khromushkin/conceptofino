@@ -32,7 +32,7 @@ export default function ProjectFilters({ active, onChange }: Props) {
           onClick={() => onChange(f.value)}
           aria-pressed={active === f.value}
           className={cn(
-            'relative font-sans text-xs tracking-[0.12em] uppercase px-4 py-2 transition-colors duration-200',
+            'relative font-sans text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors duration-200',
             active === f.value
               ? 'text-white'
               : 'text-brand-gray hover:text-brand-black'

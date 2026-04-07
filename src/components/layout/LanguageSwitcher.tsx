@@ -37,7 +37,7 @@ export default function LanguageSwitcher({ light = false }: Props) {
             aria-label={`Switch to ${loc.label}`}
             aria-current={locale === loc.code ? 'true' : undefined}
             className={cn(
-              'font-sans text-[10px] tracking-[0.12em] uppercase transition-colors duration-200',
+              'font-sans text-[10px] tracking-[0.2em] uppercase transition-colors duration-200',
               locale === loc.code
                 ? 'text-brand-accent'
                 : light

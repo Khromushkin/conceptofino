@@ -51,7 +51,7 @@ export default function ProjectCard({ project, locale, variant = 'narrow' }: Pro
         <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/20 transition-colors duration-500" />
 
         <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
-          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-brand-accent mb-1.5">
+          <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-brand-accent mb-1.5">
             {categoryMap[project.category]} · {project.year}
           </p>
           <h3 className="font-serif text-lg lg:text-xl text-brand-cream leading-snug">

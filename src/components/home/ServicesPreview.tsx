@@ -51,7 +51,7 @@ export default async function ServicesPreview({ locale }: Props) {
               <Link href={step.href} className="group block">
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="w-14 h-14 rounded-full border border-brand-accent/40 group-hover:border-brand-accent flex items-center justify-center transition-colors duration-300">
-                    <span className="font-serif text-sm text-brand-accent">{step.num}</span>
+                    <span className="font-sans text-xs tracking-[0.2em] text-brand-accent">{step.num}</span>
                   </div>
                   <h3 className="font-serif text-xl text-brand-black group-hover:text-brand-accent transition-colors duration-200">
                     {step.title}

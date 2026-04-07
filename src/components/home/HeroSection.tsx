@@ -99,7 +99,7 @@ export default function HeroSection({ locale }: Props) {
 
       <div className="relative z-10 w-full max-w-screen-xl mx-auto px-6 lg:px-10 pb-20 lg:pb-28">
         <motion.p
-          className="font-sans text-xs text-brand-accent tracking-[0.25em] uppercase mb-5"
+          className="font-sans text-xs text-brand-accent tracking-[0.2em] uppercase mb-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -109,7 +109,7 @@ export default function HeroSection({ locale }: Props) {
 
         <h1
           ref={titleRef}
-          className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-cream leading-[1.05] max-w-3xl mb-6 text-balance"
+          className="font-serif font-light text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-cream leading-[1.05] max-w-3xl mb-6 text-balance"
           style={{ opacity: gsapReady || reduced ? 1 : 0 }}
         >
           {t('title')}
@@ -132,13 +132,13 @@ export default function HeroSection({ locale }: Props) {
         >
           <Link
             href={`/${locale}/contacto`}
-            className="inline-flex items-center bg-brand-accent text-white font-sans text-xs tracking-[0.15em] uppercase px-7 py-3.5 hover:bg-brand-dark transition-colors duration-300"
+            className="inline-flex items-center bg-brand-accent text-white font-sans text-xs tracking-[0.2em] uppercase px-7 py-3.5 hover:bg-brand-dark transition-colors duration-300"
           >
             {t('cta_primary')}
           </Link>
           <Link
             href={`/${locale}/proyectos`}
-            className="inline-flex items-center gap-2 font-sans text-xs tracking-[0.12em] uppercase text-brand-cream/70 hover:text-brand-cream transition-colors duration-200"
+            className="inline-flex items-center gap-2 font-sans text-xs tracking-[0.2em] uppercase text-brand-cream/70 hover:text-brand-cream transition-colors duration-200"
           >
             {t('cta_secondary')}
             <ChevronDown size={14} />

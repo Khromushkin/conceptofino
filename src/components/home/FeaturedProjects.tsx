@@ -24,7 +24,7 @@ export default async function FeaturedProjects({ projects, locale }: Props) {
             </h2>
             <Link
               href={`/${locale}/proyectos`}
-              className="hidden sm:flex items-center gap-2 font-sans text-xs tracking-[0.12em] uppercase text-brand-accent hover:text-brand-black transition-colors"
+              className="hidden sm:flex items-center gap-2 font-sans text-xs tracking-[0.2em] uppercase text-brand-accent hover:text-brand-black transition-colors"
             >
               {t('view_all')} →
             </Link>
@@ -52,7 +52,7 @@ export default async function FeaturedProjects({ projects, locale }: Props) {
         <div className="sm:hidden mt-8 text-center">
           <Link
             href={`/${locale}/proyectos`}
-            className="font-sans text-xs tracking-[0.12em] uppercase text-brand-accent hover:text-brand-black transition-colors"
+            className="font-sans text-xs tracking-[0.2em] uppercase text-brand-accent hover:text-brand-black transition-colors"
           >
             {t('view_all')} →
           </Link>

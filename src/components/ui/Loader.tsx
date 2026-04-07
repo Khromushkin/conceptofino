@@ -26,7 +26,7 @@ export default function Loader() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-center"
           >
-            <p className="font-serif text-2xl text-brand-black tracking-[0.15em]">
+            <p className="font-serif text-2xl text-brand-black tracking-[0.2em]">
               ConceptoFino
             </p>
             <motion.div

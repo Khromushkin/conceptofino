@@ -61,7 +61,7 @@ export default function CTASection({ locale }: Props) {
 
       <div className="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-10 text-center">
         <RevealOnScroll>
-          <p className="font-sans text-xs tracking-[0.25em] uppercase text-brand-accent mb-5">
+          <p className="font-sans text-xs tracking-[0.2em] uppercase text-brand-accent mb-5">
             {t('label')}
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-cream leading-tight max-w-2xl mx-auto mb-4 text-balance">
@@ -73,7 +73,7 @@ export default function CTASection({ locale }: Props) {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/${locale}/contacto`}
-              className="inline-flex items-center bg-brand-accent text-white font-sans text-xs tracking-[0.15em] uppercase px-8 py-4 hover:bg-brand-dark transition-colors duration-300"
+              className="inline-flex items-center bg-brand-accent text-white font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-dark transition-colors duration-300"
             >
               {t('primary')}
             </Link>
@@ -81,7 +81,7 @@ export default function CTASection({ locale }: Props) {
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center border border-brand-cream/30 text-brand-cream/70 font-sans text-xs tracking-[0.12em] uppercase px-8 py-4 hover:border-brand-accent hover:text-brand-accent transition-colors duration-300"
+              className="inline-flex items-center border border-brand-cream/30 text-brand-cream/70 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 hover:border-brand-accent hover:text-brand-accent transition-colors duration-300"
             >
               {t('whatsapp')}
             </a>

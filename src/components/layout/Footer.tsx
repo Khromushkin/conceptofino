@@ -41,7 +41,7 @@ export default async function Footer({ locale }: Props) {
               height={44}
               className="h-11 w-auto mb-2 brightness-100"
             />
-            <p className="font-sans text-xs tracking-[0.12em] text-brand-accent uppercase mb-5">
+            <p className="font-sans text-xs tracking-[0.2em] text-brand-accent uppercase mb-5">
               {t('tagline')}
             </p>
             <div className="flex items-center gap-4">
@@ -76,7 +76,7 @@ export default async function Footer({ locale }: Props) {
           </div>
 
           <div>
-            <p className="font-sans text-xs tracking-[0.15em] uppercase text-brand-cream mb-4">
+            <p className="font-sans text-xs tracking-[0.2em] uppercase text-brand-cream mb-4">
               {t('nav_title')}
             </p>
             <ul className="space-y-2.5">
@@ -94,7 +94,7 @@ export default async function Footer({ locale }: Props) {
           </div>
 
           <div>
-            <p className="font-sans text-xs tracking-[0.15em] uppercase text-brand-cream mb-4">
+            <p className="font-sans text-xs tracking-[0.2em] uppercase text-brand-cream mb-4">
               {t('services_title')}
             </p>
             <ul className="space-y-2.5">
@@ -112,7 +112,7 @@ export default async function Footer({ locale }: Props) {
           </div>
 
           <div>
-            <p className="font-sans text-xs tracking-[0.15em] uppercase text-brand-cream mb-4">
+            <p className="font-sans text-xs tracking-[0.2em] uppercase text-brand-cream mb-4">
               {t('contact_title')}
             </p>
             <ul className="space-y-3">

@@ -38,7 +38,7 @@ export default function MaterialCard({ material, locale }: Props) {
       <Link
         href={`/${locale}/materiales/${material.category}`}
         onClick={(e) => e.stopPropagation()}
-        className="font-sans text-[10px] tracking-[0.15em] uppercase text-brand-accent mb-1 hover:underline inline-block"
+        className="font-sans text-[10px] tracking-[0.2em] uppercase text-brand-accent mb-1 hover:underline inline-block"
       >
         {material.category}
       </Link>
