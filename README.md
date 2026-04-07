@@ -7,8 +7,9 @@
 
 ## Статус проекта
 
-**VPS:** 209.38.231.136 (DigitalOcean, Ubuntu 24.04) — **SSR работает**  
-**Домен:** conceptofino.es (DNS нужно перевести с OVH 188.165.132.144 → DigitalOcean 209.38.231.136)  
+**Сайт:** http://conceptofino.es (HTTP, SSL в процессе)  
+**VPS:** 209.38.231.136 (DigitalOcean, Ubuntu 24.04) — SSR, PM2 + Nginx  
+**CMS:** https://conceptofino.sanity.studio — Sanity Studio (project `qbetivec`)  
 **Репозиторий:** github.com/Khromushkin/conceptofino
 
 ---
@@ -33,7 +34,8 @@
 - Шапка адаптируется: белая на тёмном hero главной, чёрная на светлых страницах
 - Контактная форма и форма лида — при недоступности API открывают WhatsApp с заполненным сообщением
 - Sitemap, robots.txt, JsonLd (LocalBusiness schema)
-- Sanity схемы готовы (projects, materials, services, blog, team, reviews, site-settings)
+- Sanity CMS подключён: схемы, GROQ-запросы, `src/lib/content/*.ts` с fallback на хардкод
+- Studio задеплоена на conceptofino.sanity.studio (project `qbetivec`, dataset `production`)
 - Скрипты: `scripts/process-downloads.ts` (обработка фото) и `scripts/scraper/` (Instagram)
 
 ---
@@ -69,12 +71,22 @@ ssh -i ~/.ssh/id_ed25519_conceptofino root@209.38.231.136 "pm2 restart conceptof
 > **Особенность:** Next.js middleware генерирует редирект на localhost:3000 при работе за proxy.  
 > Редирект `/` → `/es` обрабатывается Nginx напрямую, минуя middleware.
 
-### SSL (после настройки DNS)
+### SSL (через DNS-01 challenge)
+
+HTTP-01 challenge не работает: OVH shared hosting перехватывает запросы с тем же доменом.  
+Решение — DNS-01 через DigitalOcean API (не зависит от HTTP):
 
 ```bash
-# DNS: conceptofino.es → 209.38.231.136 (DigitalOcean)
-apt install -y certbot python3-certbot-nginx
-certbot --nginx -d conceptofino.es -d www.conceptofino.es
+# 1. Создать токен: cloud.digitalocean.com/account/api/tokens (Write)
+ssh -i ~/.ssh/id_ed25519_conceptofino root@209.38.231.136
+apt install -y python3-certbot-dns-digitalocean
+echo "dns_digitalocean_token = ВАШ_ТОКЕН" > /root/do-credentials.ini
+chmod 600 /root/do-credentials.ini
+certbot certonly --dns-digitalocean \
+  --dns-digitalocean-credentials /root/do-credentials.ini \
+  -d conceptofino.es -d www.conceptofino.es \
+  --non-interactive --agree-tos --email info@conceptofino.es
+# 2. После получения сертификата — обновить nginx для HTTPS
 ```
 
 ---
@@ -88,24 +100,23 @@ certbot --nginx -d conceptofino.es -d www.conceptofino.es
 
 ## Дальнейшие планы
 
-### Приоритет 1 — Запуск домена
-- [ ] DNS: перевести A-запись `conceptofino.es` с OVH (188.165.132.144) на DigitalOcean (209.38.231.136)
-- [ ] SSL: после DNS → `certbot --nginx -d conceptofino.es -d www.conceptofino.es` на VPS
+### Приоритет 1 — SSL
+- [ ] SSL через DNS-01 (DigitalOcean API токен) — см. раздел выше
+- [ ] После SSL: обновить Nginx для HTTPS + redirect HTTP → HTTPS
 - [ ] Sitemap: заменить `conceptofino.com` на `conceptofino.es` в `next-sitemap.config.js`
 
-### Приоритет 2 — Функциональность
-- [ ] Email: настроить отправку писем (ключ Resend или SMTP в `.env.local` на VPS, код уже есть в `src/lib/email.ts`)
-- [ ] Google Analytics / Plausible — добавить `NEXT_PUBLIC_GA_ID` в `.env.local`
-
-### Приоритет 3 — Контент
-- [ ] Заполнить реальный контент через Sanity CMS (`npm run dev` → `/studio`)
+### Приоритет 2 — Контент через Sanity
+- [ ] Заполнить проекты, материалы, услуги через conceptofino.sanity.studio
+- [ ] Написать 2–3 статьи в блог
 - [ ] Заменить заглушки команды в `src/data/team.ts` на реальные фото
 - [ ] Настроить Google Maps embed в `src/data/site-settings.ts`
-- [ ] Написать 2–3 статьи в блог
+
+### Приоритет 3 — Функциональность
+- [ ] Email: добавить ключ Resend в `.env.local` на VPS (код уже готов в `src/lib/email.ts`)
+- [ ] Google Analytics — добавить `NEXT_PUBLIC_GA_ID` в `.env.local` и пересобрать
 
 ### Приоритет 4 — SEO
 - [ ] Open Graph изображения для соцсетей
-- [ ] Подключить Sanity API (сейчас данные захардкожены в `src/data/*.ts`)
 
 ---
 
@@ -115,17 +126,19 @@ certbot --nginx -d conceptofino.es -d www.conceptofino.es
 src/
   app/[locale]/          # страницы (es/en/ru)
   components/            # UI компоненты
-  data/                  # моковые данные (временно, до Sanity)
-  lib/content/           # слой контента (переключить на Sanity)
+  data/                  # хардкод (fallback пока Sanity пустой)
+  lib/content/           # слой контента — читает из Sanity, fallback на data/
+  sanity/                # client.ts + queries.ts (GROQ)
   messages/              # переводы (es.json, en.json, ru.json)
   i18n/                  # next-intl конфиг
 public/
   images/projects/       # реальные фото (WebP, sm/md/lg)
   images/logo.webp       # логотип с прозрачным фоном
+studio/                  # Sanity Studio (отдельный React 19 проект)
+sanity/schemas/          # схемы CMS (shared между studio/ и src/)
 scripts/
   process-downloads.ts   # конвертация фото → WebP 3 размера
   scraper/               # Instagram scraper (Playwright)
-sanity/schemas/          # схемы CMS
 ```
 
 ---
@@ -135,9 +148,11 @@ sanity/schemas/          # схемы CMS
 Скопировать `.env.local.example` → `.env.local` и заполнить:
 
 ```
-NEXT_PUBLIC_SANITY_PROJECT_ID=
-NEXT_PUBLIC_SANITY_DATASET=
-SANITY_API_TOKEN=
-RESEND_API_KEY=          # или SMTP_* для email
-NEXT_PUBLIC_GA_ID=       # Google Analytics
+NEXT_PUBLIC_SANITY_PROJECT_ID=qbetivec   # уже заполнено
+NEXT_PUBLIC_SANITY_DATASET=production    # уже заполнено
+SANITY_API_TOKEN=                        # нужен для draft preview
+RESEND_API_KEY=                          # для email отправки
+NEXT_PUBLIC_GA_ID=                       # Google Analytics
 ```
+
+На VPS файл `/var/www/conceptofino/.env.local` уже создан с Sanity project ID.
