@@ -1,6 +1,7 @@
 // src/app/[locale]/proyectos/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { buildMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -27,10 +28,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params
   const project = await getProjectBySlug(slug)
   if (!project) return {}
-  return {
-    title: `${getLocalizedField(project.seo.metaTitle, locale as Locale)} — ConceptoFino`,
-    description: getLocalizedField(project.seo.metaDescription, locale as Locale),
-  }
+  const loc = locale as Locale
+  return buildMetadata({
+    title: `${getLocalizedField(project.seo.metaTitle, loc)} — ConceptoFino`,
+    description: getLocalizedField(project.seo.metaDescription, loc),
+    path: `/${locale}/proyectos/${slug}`,
+    locale: loc,
+    image: project.mainImage.src,
+  })
 }
 
 export default async function ProjectPage({ params }: Props) {
