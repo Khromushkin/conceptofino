@@ -26,6 +26,10 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
     alternateLanguages[hreflang] = `${SITE_URL}${altPath}`
   }
 
+  // x-default points to the Spanish version (primary market)
+  const esPath = path.replace(`/${locale}/`, '/es/').replace(`/${locale}`, '/es')
+  alternateLanguages['x-default'] = `${SITE_URL}${esPath}`
+
   return {
     title,
     description,
