@@ -2,6 +2,8 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { getServiceBySlug } from '@/lib/content'
+import { buildBreadcrumbJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/ui/JsonLd'
 import type { Locale, ServiceSlug } from '@/types'
 import { getLocalizedField } from '@/lib/utils'
 import ProcessSteps from '@/components/services/ProcessSteps'
@@ -23,6 +25,11 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={buildBreadcrumbJsonLd([
+        { name: loc === 'es' ? 'Inicio' : loc === 'ru' ? 'Главная' : 'Home', url: `https://conceptofino.com/${loc}` },
+        { name: loc === 'es' ? 'Servicios' : loc === 'ru' ? 'Услуги' : 'Services', url: `https://conceptofino.com/${loc}/servicios` },
+        { name: getLocalizedField(service.title, loc), url: `https://conceptofino.com/${loc}/servicios/${slug}` },
+      ])} />
       <div className="pt-24 lg:pt-32">
         {/* Hero */}
         <div className="relative h-[50vh] min-h-[360px]">

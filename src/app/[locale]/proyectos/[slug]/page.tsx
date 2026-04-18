@@ -1,7 +1,8 @@
 // src/app/[locale]/proyectos/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, buildBreadcrumbJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/ui/JsonLd'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -57,6 +58,11 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <article className="pt-16">
+      <JsonLd data={buildBreadcrumbJsonLd([
+        { name: loc === 'es' ? 'Inicio' : loc === 'ru' ? 'Главная' : 'Home', url: `https://conceptofino.com/${loc}` },
+        { name: loc === 'es' ? 'Proyectos' : loc === 'ru' ? 'Проекты' : 'Projects', url: `https://conceptofino.com/${loc}/proyectos` },
+        { name: getLocalizedField(project.title, loc), url: `https://conceptofino.com/${loc}/proyectos/${project.slug}` },
+      ])} />
       {/* Hero */}
       <div className="relative h-[60vh] min-h-[400px]">
         <Image

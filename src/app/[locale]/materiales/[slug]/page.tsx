@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getMaterialBySlug, getMaterialsByCategory, getProjects } from '@/lib/content'
+import { buildBreadcrumbJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/ui/JsonLd'
 import type { Locale, MaterialCategory } from '@/types'
 import { getLocalizedField } from '@/lib/utils'
 
@@ -94,6 +96,11 @@ export default async function MaterialSlugPage({ params }: Props) {
 
   return (
     <div className="pt-24 lg:pt-32">
+      <JsonLd data={buildBreadcrumbJsonLd([
+        { name: loc === 'es' ? 'Inicio' : loc === 'ru' ? 'Главная' : 'Home', url: `https://conceptofino.com/${loc}` },
+        { name: loc === 'es' ? 'Materiales' : loc === 'ru' ? 'Материалы' : 'Materials', url: `https://conceptofino.com/${loc}/materiales` },
+        { name: getLocalizedField(material.title, loc), url: `https://conceptofino.com/${loc}/materiales/${material.slug}` },
+      ])} />
       {/* Hero */}
       <div className="relative h-[50vh] min-h-[360px]">
         <Image

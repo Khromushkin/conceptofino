@@ -1,10 +1,32 @@
 // src/app/[locale]/blog/page.tsx
+import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getBlogPosts } from '@/lib/content'
+import { buildMetadata } from '@/lib/seo'
 import SectionHeading from '@/components/ui/SectionHeading'
 
 interface Props {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const titles: Record<string, string> = {
+    es: 'Blog de diseño de interiores — ConceptoFino',
+    en: 'Interior Design Blog — ConceptoFino Valencia',
+    ru: 'Блог о дизайне интерьера — ConceptoFino',
+  }
+  const descriptions: Record<string, string> = {
+    es: 'Artículos, consejos e inspiración sobre diseño de interiores, muebles a medida y decoración del hogar. Ideas para transformar tu espacio en Valencia y más allá.',
+    en: 'Articles, tips and inspiration on interior design, custom furniture and home decoration. Ideas to transform your space in Valencia and beyond.',
+    ru: 'Статьи, советы и вдохновение по дизайну интерьера, мебели на заказ и декору дома. Идеи для преобразования вашего пространства в Валенсии и за её пределами.',
+  }
+  return buildMetadata({
+    title: titles[locale] ?? titles.es,
+    description: descriptions[locale] ?? descriptions.es,
+    path: `/${locale}/blog`,
+    locale: locale as 'es' | 'en' | 'ru',
+  })
 }
 
 export default async function BlogPage({ params }: Props) {
