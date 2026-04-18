@@ -62,7 +62,7 @@ export function buildLocalBusinessJsonLd(locale: Locale): Record<string, unknown
     name: SITE_NAME,
     description: descriptions[locale],
     url: SITE_URL,
-    telephone: '+34 600 000 000',
+    telephone: '+34 657 575 939',
     email: 'info@conceptofino.com',
     image: `${SITE_URL}/og-default.jpg`,
     logo: `${SITE_URL}/logo.svg`,
