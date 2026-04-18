@@ -1,7 +1,8 @@
 // src/app/[locale]/contacto/page.tsx
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, buildBreadcrumbJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/ui/JsonLd'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { getSiteSettings } from '@/lib/content'
 import type { Locale } from '@/types'
@@ -15,11 +16,15 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const titles: Record<string, string> = { es: 'Contacto — ConceptoFino Valencia', en: 'Contact — ConceptoFino Valencia', ru: 'Контакты — ConceptoFino Валенсия' }
+  const titles: Record<string, string> = {
+    es: 'Solicitar presupuesto gratuito — ConceptoFino Valencia',
+    en: 'Request a Free Quote — ConceptoFino Valencia, Spain',
+    ru: 'Бесплатная смета — ConceptoFino Валенсия, Испания',
+  }
   const descriptions: Record<string, string> = {
-    es: 'Solicita tu presupuesto gratuito. Diseñamos y fabricamos muebles a medida en Valencia.',
-    en: 'Request your free quote. We design and make custom furniture in Valencia.',
-    ru: 'Запросите бесплатную смету. Проектируем и изготавливаем мебель на заказ в Валенсии.',
+    es: 'Solicita tu presupuesto gratuito sin compromiso. Diseñamos y fabricamos armarios, cocinas y muebles a medida en Valencia. Respondemos en menos de 24 horas.',
+    en: 'Request your free, no-obligation quote. We design and manufacture custom wardrobes, kitchens and furniture in Valencia. We respond within 24 hours.',
+    ru: 'Запросите бесплатную смету без обязательств. Проектируем и изготавливаем шкафы, кухни и мебель на заказ в Валенсии. Отвечаем в течение 24 часов.',
   }
   return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/contacto`, locale: locale as 'es' | 'en' | 'ru' })
 }
@@ -35,6 +40,10 @@ export default async function ContactoPage({ params }: Props) {
 
   return (
     <div className="pt-24 lg:pt-32">
+      <JsonLd data={buildBreadcrumbJsonLd([
+        { name: loc === 'es' ? 'Inicio' : loc === 'ru' ? 'Главная' : 'Home', url: `https://conceptofino.com/${loc}` },
+        { name: loc === 'es' ? 'Contacto' : loc === 'ru' ? 'Контакты' : 'Contact', url: `https://conceptofino.com/${loc}/contacto` },
+      ])} />
       <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left: info */}

@@ -1,7 +1,9 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getServices } from '@/lib/content'
+import { buildMetadata } from '@/lib/seo'
 import type { Locale } from '@/types'
 import { getLocalizedField } from '@/lib/utils'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
@@ -10,10 +12,24 @@ interface Props {
   params: Promise<{ locale: string }>
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'services' })
-  return { title: `${t('title')} — ConceptoFino` }
+  const titles: Record<string, string> = {
+    es: 'Servicios de diseño y fabricación — ConceptoFino',
+    en: 'Design & Manufacturing Services — ConceptoFino',
+    ru: 'Услуги дизайна и производства — ConceptoFino',
+  }
+  const descriptions: Record<string, string> = {
+    es: 'Diseño personalizado, fabricación artesanal y montaje profesional de muebles a medida en Valencia. Tres etapas, un resultado único adaptado a tu espacio y estilo.',
+    en: 'Bespoke design, artisan manufacturing and professional installation of custom furniture in Valencia. Three stages, one unique result tailored to your space and style.',
+    ru: 'Индивидуальный дизайн, ремесленное производство и профессиональный монтаж мебели на заказ в Валенсии. Три этапа, один уникальный результат, адаптированный под вас.',
+  }
+  return buildMetadata({
+    title: titles[locale] ?? titles.es,
+    description: descriptions[locale] ?? descriptions.es,
+    path: `/${locale}/servicios`,
+    locale: locale as 'es' | 'en' | 'ru',
+  })
 }
 
 export default async function ServiciosPage({ params }: Props) {

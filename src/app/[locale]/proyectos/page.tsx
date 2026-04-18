@@ -13,9 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const titles: Record<string, string> = { es: 'Proyectos — ConceptoFino', en: 'Projects — ConceptoFino', ru: 'Проекты — ConceptoFino' }
   const descriptions: Record<string, string> = {
-    es: 'Galería de proyectos de muebles a medida en Valencia. Armarios, cocinas, salones y más.',
-    en: 'Custom furniture project gallery in Valencia. Wardrobes, kitchens, living rooms and more.',
-    ru: 'Галерея проектов мебели на заказ в Валенсии. Шкафы, кухни, гостиные и другое.',
+    es: 'Galería de proyectos de muebles a medida en Valencia: armarios empotrados, cocinas de diseño, vestidores, salones y proyectos integrales. Cada pieza única.',
+    en: 'Custom furniture project gallery in Valencia: built-in wardrobes, designer kitchens, dressing rooms, living rooms and complete interior projects. Each piece unique.',
+    ru: 'Галерея проектов мебели на заказ в Валенсии: встроенные шкафы, дизайнерские кухни, гардеробные, гостиные и комплексные проекты интерьера. Каждая вещь уникальна.',
   }
   return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/proyectos`, locale: locale as 'es' | 'en' | 'ru' })
 }

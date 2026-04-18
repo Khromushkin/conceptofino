@@ -13,9 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const titles: Record<string, string> = { es: 'Materiales y acabados — ConceptoFino', en: 'Materials & finishes — ConceptoFino', ru: 'Материалы и отделка — ConceptoFino' }
   const descriptions: Record<string, string> = {
-    es: 'Descubre los materiales premium que usamos: maderas nobles, lacados, acero y más.',
-    en: 'Discover the premium materials we use: fine woods, lacquers, steel and more.',
-    ru: 'Откройте для себя материалы премиум-класса: ценные породы дерева, лаки, сталь и другое.',
+    es: 'Descubre los materiales premium que usamos en ConceptoFino: maderas nobles como roble y nogal, acero inoxidable, piedra natural, lacados y textiles de calidad.',
+    en: 'Discover the premium materials we use at ConceptoFino: fine woods like oak and walnut, stainless steel, natural stone, lacquers and quality textiles.',
+    ru: 'Откройте материалы премиум-класса ConceptoFino: ценные породы дерева — дуб и орех, нержавеющая сталь, натуральный камень, лаки и качественные текстильные изделия.',
   }
   return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/materiales`, locale: locale as 'es' | 'en' | 'ru' })
 }

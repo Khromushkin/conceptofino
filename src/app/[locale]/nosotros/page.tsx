@@ -2,7 +2,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, buildBreadcrumbJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/ui/JsonLd'
 import { getTeam, getReviews } from '@/lib/content'
 import type { Locale } from '@/types'
 import { getLocalizedField } from '@/lib/utils'
@@ -15,11 +16,15 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
-  const titles: Record<string, string> = { es: 'Sobre nosotros — ConceptoFino', en: 'About us — ConceptoFino', ru: 'О нас — ConceptoFino' }
+  const titles: Record<string, string> = {
+    es: 'El equipo — ConceptoFino | Artesanos Valencia',
+    en: 'Our Team — ConceptoFino | Custom Furniture Valencia',
+    ru: 'О команде ConceptoFino — Мебель на заказ Валенсия',
+  }
   const descriptions: Record<string, string> = {
-    es: 'Conoce al equipo de ConceptoFino — artesanos valencianos con pasión por el diseño de interiores a medida.',
-    en: 'Meet the ConceptoFino team — Valencian craftspeople with a passion for bespoke interior design.',
-    ru: 'Познакомьтесь с командой ConceptoFino — валенсийские мастера с страстью к дизайну интерьеров на заказ.',
+    es: 'Conoce al equipo de ConceptoFino — artesanos valencianos especializados en muebles a medida e interiores de diseño. Más de 10 años transformando hogares en Valencia.',
+    en: 'Meet the ConceptoFino team — Valencian craftspeople specialising in bespoke furniture and interior design. Over 10 years transforming homes across Valencia.',
+    ru: 'Познакомьтесь с командой ConceptoFino — валенсийские мастера, специализирующиеся на мебели на заказ и дизайне интерьеров. Более 10 лет преобразуем дома в Валенсии.',
   }
   return buildMetadata({ title: titles[locale] ?? titles.es, description: descriptions[locale] ?? descriptions.es, path: `/${locale}/nosotros`, locale: locale as 'es' | 'en' | 'ru' })
 }
@@ -36,6 +41,10 @@ export default async function NosotrosPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={buildBreadcrumbJsonLd([
+        { name: loc === 'es' ? 'Inicio' : loc === 'ru' ? 'Главная' : 'Home', url: `https://conceptofino.com/${loc}` },
+        { name: loc === 'es' ? 'Sobre nosotros' : loc === 'ru' ? 'О нас' : 'About us', url: `https://conceptofino.com/${loc}/nosotros` },
+      ])} />
       <div className="pt-24 lg:pt-32">
         {/* Header */}
         <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-16">

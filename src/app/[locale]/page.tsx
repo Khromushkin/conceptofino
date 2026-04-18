@@ -18,13 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const titles: Record<string, string> = {
     es: 'ConceptoFino — Muebles a medida en Valencia',
-    en: 'ConceptoFino — Custom Furniture in Valencia',
-    ru: 'ConceptoFino — Мебель на заказ в Валенсии',
+    en: 'ConceptoFino — Custom Furniture in Valencia, Spain',
+    ru: 'ConceptoFino — Мебель на заказ в Валенсии, Испания',
   }
   const descriptions: Record<string, string> = {
-    es: 'Armarios, cocinas y muebles de diseño personalizados. Por el precio de IKEA, pero hecho a medida para ti en Valencia.',
-    en: 'Custom wardrobes, kitchens and designer furniture. At IKEA prices, but made to measure for you in Valencia.',
-    ru: 'Шкафы, кухни и дизайнерская мебель на заказ. По цене IKEA, но сделано специально для вас в Валенсии.',
+    es: 'Armarios empotrados, cocinas y muebles de diseño personalizados en Valencia. Calidad artesanal integrada en tu hogar, al precio de IKEA. Presupuesto gratuito.',
+    en: 'Custom built-in wardrobes, kitchens and designer furniture in Valencia. Artisan quality tailored to your home at IKEA prices. Request a free quote today.',
+    ru: 'Встроенные шкафы, кухни и дизайнерская мебель на заказ в Валенсии. Качество ремесленника, интегрированное в ваш дом, по цене IKEA. Бесплатная смета.',
   }
   return buildMetadata({
     title: titles[locale] ?? titles.es,
